@@ -21,7 +21,7 @@
                 </Label>
                 <Circle fx:id="dbStatus" fill="DODGERBLUE" radius="6.0" stroke="BLACK" strokeType="INSIDE">
                     <HBox.margin>
-                        <Insets bottom="5.0" left="2.0" top="5.0"/>
+                        <Insets bottom="5.0" left="2.00" top="5.0"/>
                     </HBox.margin>
                 </Circle>
             </HBox>
