@@ -1,3 +1,14 @@
-== ServerSam
-Republishing as Gradle Project
-https://adyel.github.io/ServerSam/
+//  Check the user manual for doc format
+// https://asciidoctor.org/docs/user-manual/
+= ServerSam
+Adyel Ullahil Mamun <adyel@live.com>
+
+:imagesdir: ./docs/image
+
+image::SamOnline.png[align="center"]
+
+== এটা কি জিনিস ?
+
+{doctitle} হল একটি Java প্রোগ্রাম যেটা  http://172.16.50.4/[SamOnline] Server থেকে যত মুভি আছে তা Collect করবে এবং rating সহ দেখাবে।
+
+
