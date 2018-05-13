@@ -5,10 +5,13 @@ Adyel Ullahil Mamun <adyel@live.com>
 
 :imagesdir: ./docs/image
 
-image::SamOnline.png[align="center"]
+image::Logo.png[]
 
 == এটা কি জিনিস ?
 
-{doctitle} হল একটি Java প্রোগ্রাম যেটা  http://172.16.50.4/[SamOnline] Server থেকে যত মুভি আছে তা Collect করবে এবং rating সহ দেখাবে।
+{doctitle} হল একটি Java program । এটার কাজ হল  http://172.16.50.4/[SamOnline] Server থেকে যত মুভি আছে তা Collect করবে এবং
+rating সহ দেখাবে।
 
+== কি দরকার এসব করে ?
 
+প্রথমেই বলে নেই
