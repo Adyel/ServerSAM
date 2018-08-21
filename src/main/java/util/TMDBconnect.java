@@ -14,7 +14,7 @@ import java.net.URL;
 
 public class TMDBconnect {
 
-    private static String baseUrl = "https://api.themoviedb.org/3/search/movie?apiKey=";
+    private static String baseUrl = "https://api.themoviedb.org/3/search/movie?api_key=";
 
     public TMDBconnect(String apiKey) {
         baseUrl = baseUrl + apiKey;
@@ -31,12 +31,12 @@ public class TMDBconnect {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             BufferedReader jsonFile = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
+            String testString = jsonFile.readLine();
+
             Response response = gson.fromJson(jsonFile.readLine(), Response.class);
             movie = response.getResults().get(0);
 
             Logger.info("Name : " + movie.getTitle());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

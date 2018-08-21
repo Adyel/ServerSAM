@@ -9,6 +9,7 @@ public class testMain {
         Movie movie = tmdb.findMovie("Oldboy", 2013);
 
         System.out.println(movie.getTitle() + "(" + movie.getVoteAverage() + ") - " + movie.getOverview());
+        System.out.println(movie.getGenres());
 
     }
 }
