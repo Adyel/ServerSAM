@@ -37,8 +37,6 @@ public class TMDBconnect {
             movie = response.getResults().get(0);
 
             Logger.info("Name : " + movie.getTitle());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
