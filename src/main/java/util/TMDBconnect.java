@@ -31,7 +31,7 @@ public class TMDBconnect {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             BufferedReader jsonFile = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-            String testString = jsonFile.readLine();
+            //String testString = jsonFile.readLine();
 
             Response response = gson.fromJson(jsonFile.readLine(), Response.class);
             movie = response.getResults().get(0);

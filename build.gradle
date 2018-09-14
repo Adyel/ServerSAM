@@ -39,6 +39,9 @@ dependencies {
     // http://www.tinylog.org/
     compile 'org.tinylog:tinylog:1.3.4'
 
+    // https://square.github.io/retrofit/
+    compile 'com.squareup.retrofit2:retrofit:2.4.0'
+
 }
 
 jar {

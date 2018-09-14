@@ -91,3 +91,5 @@ gradle-app.setting
 \.idea/shelf/
 
 \.idea/
+
+local\.properties
