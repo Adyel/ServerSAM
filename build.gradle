@@ -42,6 +42,9 @@ dependencies {
     // https://square.github.io/retrofit/
     compile 'com.squareup.retrofit2:retrofit:2.4.0'
 
+    // https://github.com/square/retrofit/tree/master/retrofit-converters/gson
+    compile 'com.squareup.retrofit2:converter-gson:2.4.0'
+
 }
 
 jar {

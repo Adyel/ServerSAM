@@ -1,11 +1,12 @@
 
 package model;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result {
+import java.util.List;
+
+public class Movie {
 
     @SerializedName("vote_count")
     @Expose

@@ -9,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class TMDBconnect {
@@ -34,7 +33,7 @@ public class TMDBconnect {
             //String testString = jsonFile.readLine();
 
             Response response = gson.fromJson(jsonFile.readLine(), Response.class);
-            movie = response.getResults().get(0);
+            movie = response.getMovies().get(0);
 
             Logger.info("Name : " + movie.getTitle());
         } catch (IOException e) {
