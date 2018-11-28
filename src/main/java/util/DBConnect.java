@@ -4,12 +4,14 @@ import java.sql.*;
 
 public class DBConnect {
 
+    private static final String sqliteConnection = "jdbc:sqlite:src/main/resources/DataBase.db";
+    
     public static Connection getConnection() throws SQLException {
-
+        
         try {
             Class.forName("org.sqlite.JDBC");
+            return DriverManager.getConnection(sqliteConnection);
 
-            return DriverManager.getConnection("jdbc:sqlite:src/main/resources/DataBase.db");
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
@@ -23,9 +25,7 @@ public class DBConnect {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        String url = "jdbc:sqlite:src/main/resources/DataBase.db";
-
+        
         String createTable = "    CREATE TABLE Movie_List                   " +
                 "            (                                              " +
                 "                    ID INTEGER PRIMARY KEY AUTOINCREMENT,  " +
@@ -34,7 +34,7 @@ public class DBConnect {
                 "                    Quality TEXT                           " +
                 "            );                                             ";
 
-        try (Connection conn = DriverManager.getConnection(url)) {
+        try (Connection conn = DriverManager.getConnection(sqliteConnection)) {
             DatabaseMetaData meta = conn.getMetaData();
             System.out.println("The driver name is " + meta.getDriverName());
             System.out.println("A new database has been created.");

@@ -1,3 +1,4 @@
+
 package model;
 
 import com.google.gson.annotations.Expose;
@@ -5,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Response {
+public class Result {
 
     @SerializedName("page")
     @Expose
@@ -18,22 +19,38 @@ public class Response {
     private Integer totalPages;
     @SerializedName("results")
     @Expose
-    private List<Movie> movieList = null;
+    private List<Movie> movies = null;
 
     public Integer getPage() {
         return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
     }
 
     public Integer getTotalResults() {
         return totalResults;
     }
 
+    public void setTotalResults(Integer totalResults) {
+        this.totalResults = totalResults;
+    }
+
     public Integer getTotalPages() {
         return totalPages;
     }
 
-    public List<Movie> getResults() {
-        return movieList;
+    public void setTotalPages(Integer totalPages) {
+        this.totalPages = totalPages;
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
     }
 
 }

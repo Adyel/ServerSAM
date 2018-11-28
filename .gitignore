@@ -89,3 +89,7 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 \.idea/shelf/
+
+\.idea/
+
+local\.properties

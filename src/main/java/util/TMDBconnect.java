@@ -2,14 +2,13 @@ package util;
 
 import com.google.gson.Gson;
 import model.Movie;
-import model.Response;
+import model.Result;
 import org.pmw.tinylog.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class TMDBconnect {
@@ -31,14 +30,12 @@ public class TMDBconnect {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             BufferedReader jsonFile = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-            String testString = jsonFile.readLine();
+            //String testString = jsonFile.readLine();
 
-            Response response = gson.fromJson(jsonFile.readLine(), Response.class);
-            movie = response.getResults().get(0);
+            Result result = gson.fromJson(jsonFile.readLine(), Result.class);
+            movie = result.getMovies().get(0);
 
             Logger.info("Name : " + movie.getTitle());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
