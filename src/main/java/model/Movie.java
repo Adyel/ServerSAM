@@ -11,6 +11,16 @@ public class Movie {
     @SerializedName("vote_count")
     @Expose
     private Integer voteCount;
+
+    public Movie(Double voteAverage, String title, String originalTitle, List<Integer> genreIds, String overview, String releaseDate) {
+        this.voteAverage = voteAverage;
+        this.title = title;
+        this.originalTitle = originalTitle;
+        this.genreIds = genreIds;
+        this.overview = overview;
+        this.releaseDate = releaseDate;
+    }
+
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -19,7 +29,7 @@ public class Movie {
     private Boolean video;
     @SerializedName("vote_average")
     @Expose
-    private Integer voteAverage;
+    private Double voteAverage;
     @SerializedName("title")
     @Expose
     private String title;
@@ -75,11 +85,11 @@ public class Movie {
         this.video = video;
     }
 
-    public Integer getVoteAverage() {
+    public Double getVoteAverage() {
         return voteAverage;
     }
 
-    public void setVoteAverage(Integer voteAverage) {
+    public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
     }
 

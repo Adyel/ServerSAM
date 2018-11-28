@@ -1,8 +1,7 @@
 import model.Movie;
-import model.Response;
+import model.Result;
 import okhttp3.Dispatcher;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import util.DBConnect;
@@ -13,7 +12,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class testMain {
@@ -39,13 +37,13 @@ public class testMain {
 
         // https://api.themoviedb.org/3/search/movie?api_key=909af28891cff6bfe9ea2fea81fc5426&query=Oldboy&year=2013
 
-        Call<Response> result = apiInterface.response(3,"search","909af28891cff6bfe9ea2fea81fc5426","Oldboy", 2013);
+        Call<Result> result = apiInterface.response(3,"search","909af28891cff6bfe9ea2fea81fc5426","Oldboy", 2003);
 
 
-//        result.enqueue(new Callback<Response>() {
+//        result.enqueue(new Callback<Result>() {
 //            @Override
-//            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-//                Response responseList = response.body();
+//            public void onResponse(Call<Result> call, retrofit2.Result<Result> response) {
+//                Result responseList = response.body();
 //                List<Movie> movieList = responseList.getMovies();
 //                System.out.println(movieList.get(0).getGenreIds());
 //
@@ -53,7 +51,7 @@ public class testMain {
 //            }
 //
 //            @Override
-//            public void onFailure(Call<Response> call, Throwable t) {
+//            public void onFailure(Call<Result> call, Throwable t) {
 //                t.printStackTrace();
 //
 //            }
@@ -62,18 +60,21 @@ public class testMain {
 
         try {
            retrofit2.Response response = result.execute();
-           Response reply = (Response) response.body();
+           Result reply = (Result) response.body();
            List<Movie> movieList = reply.getMovies();
            Movie firstMovie = movieList.get(0);
 
-           Connection connection = DBConnect.getConnection();
-           Statement statement = connection.createStatement();
-           statement.executeUpdate("UPDATE Movie_List SET Rating = " + firstMovie.getPopularity() + ", Overview = '" + firstMovie.getOverview() + "' WHERE ID = 4415");
+            System.out.println(firstMovie.getReleaseDate());
+
+//           Connection connection = DBConnect.getConnection();
+//           Statement statement = connection.createStatement();
+//           statement.executeUpdate("UPDATE Movie_List SET Rating = " + firstMovie.getVoteAverage() + ", Overview = '" + firstMovie.getOverview() + "' WHERE ID = 2292");
 
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
+//        catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 }
