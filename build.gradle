@@ -25,9 +25,10 @@ dependencies {
 
     // jsoup HTML parser library @ https://jsoup.org/
     compile 'org.jsoup:jsoup:1.11.2'
-
-    // https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
-    compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.7.2'
+    
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    compile 'com.h2database:h2:1.4.197'
+    
 
     // https://github.com/holgerbrandl/themoviedbapi/
     //compile group: 'info.movito', name: 'themoviedbapi', version:'1.7'
@@ -45,6 +46,15 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.4.0'
 
     // http://hibernate.org/orm/documentation/getting-started/
-    compile 'org.hibernate:hibernate-core:5.3.7.Final'
+    compile 'org.hibernate:hibernate-core:5.4.1.Final'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-text
+    compile group: 'org.apache.commons', name: 'commons-text', version: '1.6'
 
 }

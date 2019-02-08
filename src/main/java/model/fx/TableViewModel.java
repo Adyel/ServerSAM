@@ -1,4 +1,4 @@
-package model;
+package model.fx;
 
 public class TableViewModel {
 

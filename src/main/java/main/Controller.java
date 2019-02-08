@@ -10,7 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-import model.TableViewModel;
+import model.fx.TableViewModel;
 import util.DBConnect;
 
 import java.net.URL;
@@ -46,6 +46,8 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+//        this.dbStatus.setFill(Color.rgb(244, 91, 59));
 
         // This is Database connection LED
 

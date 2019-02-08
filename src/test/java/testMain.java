@@ -1,16 +1,12 @@
-import model.Movie;
-import model.Result;
+import model.json.Movie;
+import model.json.Result;
 import okhttp3.Dispatcher;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import util.DBConnect;
 import util.tmdbAPI;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 import java.util.concurrent.Executors;
 
