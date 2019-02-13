@@ -1,15 +1,18 @@
 package model.fx;
 
+import model.orm.MovieDetails;
+
 public class TableViewModel {
 
-    String title;
-    Integer year;
-    //double rating;
+    private String title;
+    private Integer year;
+    private double rating;
+    private boolean subtitleStatus;
+    private String director;
 
-    public TableViewModel(String title, int year) {
-        this.title = title;
-        this.year = year;
-        //this.rating = rating;
+    public TableViewModel(MovieDetails movieDetails) {
+        this.title = movieDetails.getFileName();
+        this.year = movieDetails.getYear();
     }
 
     public String getTitle() {
@@ -28,11 +31,27 @@ public class TableViewModel {
         this.year = year;
     }
 
-//    public double getRating() {
-//        return rating;
-//    }
-//
-//    public void setRating(double rating) {
-//        this.rating = rating;
-//    }
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public boolean isSubtitleStatus() {
+        return subtitleStatus;
+    }
+
+    public void setSubtitleStatus(boolean subtitleStatus) {
+        this.subtitleStatus = subtitleStatus;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
 }

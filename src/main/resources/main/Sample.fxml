@@ -18,6 +18,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.cell.ImageGridCell?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="600.0" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
@@ -71,24 +72,24 @@
                               </HBox>
                               <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="649.0" prefWidth="600.0">
                                  <items>
-                                    <TableView minHeight="450.0" minWidth="0.0" prefHeight="356.0" prefWidth="598.0">
+                                    <TableView fx:id="table" minHeight="450.0" minWidth="0.0" prefHeight="356.0" prefWidth="598.0">
                                       <columns>
-                                        <TableColumn prefWidth="258.0" text="Title" />
-                                        <TableColumn minWidth="0.0" prefWidth="109.0" text="Year" />
-                                          <TableColumn prefWidth="148.0" text="Genre" />
-                                          <TableColumn prefWidth="43.0">
+                                        <TableColumn fx:id="title" prefWidth="258.0" text="Title" />
+                                        <TableColumn fx:id="year" minWidth="0.0" prefWidth="109.0" text="Year" />
+                                          <TableColumn fx:id="director" prefWidth="148.0" text="Director" />
+                                          <TableColumn fx:id="rating" prefWidth="43.0">
                                              <graphic>
                                                 <FontIcon iconLiteral="typ-star-outline" iconSize="20" />
                                              </graphic>
                                           </TableColumn>
-                                          <TableColumn minWidth="0.0" prefWidth="40.0">
+                                          <TableColumn fx:id="subtitle" minWidth="0.0" prefWidth="40.0">
                                              <graphic>
                                                 <FontIcon iconLiteral="typ-document-text" iconSize="20" />
                                              </graphic>
                                           </TableColumn>
                                       </columns>
                                     </TableView>
-                                    <GridPane alignment="CENTER">
+                                    <GridPane alignment="TOP_RIGHT">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -98,6 +99,9 @@
                                         <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                                         <RowConstraints maxHeight="17.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
+                                       <children>
+                                          <ImageGridCell prefHeight="110.0" prefWidth="139.0" style="-fx-background-color: RED;" GridPane.columnIndex="1" />
+                                       </children>
                                     </GridPane>
                                  </items>
                               </SplitPane>

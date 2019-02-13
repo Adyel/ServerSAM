@@ -11,13 +11,22 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import model.fx.TableViewModel;
+import model.orm.Genre;
+import model.orm.MovieDetails;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import util.DBConnect;
 
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class Controller implements Initializable {
 
@@ -37,15 +46,51 @@ public class Controller implements Initializable {
 
     @FXML
     private TableView<TableViewModel> table;
+
     @FXML
     private TableColumn<TableViewModel, String> title;
+
     @FXML
     private TableColumn<TableViewModel, Integer> year;
 
-    ObservableList<TableViewModel> list = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<TableViewModel, Double> rating;
+
+    @FXML
+    private TableColumn<TableViewModel, String> director;
+
+    @FXML
+    private TableColumn<TableViewModel, Boolean> subtitle;
+
+    ObservableList<TableViewModel> tableViewModelObservableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        year.setCellValueFactory(new PropertyValueFactory<>("year"));
+        rating.setCellValueFactory(new PropertyValueFactory<>("rating"));
+        director.setCellValueFactory(new PropertyValueFactory<>("director"));
+        subtitle.setCellValueFactory(new PropertyValueFactory<>("subtitle"));
+
+
+        SessionFactory factory = new Configuration()
+                .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(MovieDetails.class)
+                .buildSessionFactory();
+
+
+        Session session = factory.openSession();
+        session.beginTransaction();
+
+        List<MovieDetails> movieDetailsList = session.createQuery("from MovieDetails").getResultList();
+
+        session.getTransaction().commit();
+        factory.close();
+
+        tableViewModelObservableList = movieDetailsList.stream().map(TableViewModel::new).collect(Collectors.toCollection(FXCollections::observableArrayList));
+
+        table.setItems(tableViewModelObservableList);
 
     }
 
