@@ -32,22 +32,23 @@ public class Scrapper {
     private static void scrap(String URL) {
         Document doc = null;
 
-        for (int i = 0; i < 5; i++)
-        try {
-            doc = Jsoup.connect(URL)
-                    .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
-                    .timeout(15000)
-                    .get();
-            break;
-        } catch (IOException e) {
-            Logger.warn("Retrying : " + (i+1) );
+        for (int i = 0; i < 5; i++) {
             try {
-                String result = java.net.URLDecoder.decode(URL, "UTF-8");
-                System.out.println(result);
-            } catch (UnsupportedEncodingException e1) {
-                e1.printStackTrace();
+                doc = Jsoup.connect(URL)
+                        .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
+                        .timeout(15000)
+                        .get();
+                break;
+            } catch (IOException e) {
+                Logger.warn("Retrying : " + (i + 1));
+                try {
+                    String result = java.net.URLDecoder.decode(URL, "UTF-8");
+                    System.out.println(result);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+                continue;
             }
-            continue;
         }
 
         Elements names = doc.getElementsByTag("a");
@@ -70,12 +71,12 @@ public class Scrapper {
             System.out.println(movieData[0] + " " + movieData[1]);
 
 
-//            if (movieData != null && movieData.length == 2 && !movieData[1].isBlank()){
-//                session.save(new MovieDetails(movieData[0],Integer.parseInt(movieData[1])) );
-//            }
+            if (movieData != null && movieData.length == 2 && !movieData[1].isBlank()){
+                session.save(new MovieDetails(movieData[0],Integer.parseInt(movieData[1])) );
+            }
         }
 
-//        session.getTransaction().commit();
-//        factory.close();
+        session.getTransaction().commit();
+        factory.close();
     }
 }

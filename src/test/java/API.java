@@ -58,19 +58,19 @@ public class API {
         factory.close();
 
 
-        // INFO: GET Cast Members
-        // ! First Need to fetch TMDB_MOVIE_ID to work
-
-        List<CrewMember> crewMemberList = new ArrayList<>();
-
-        try {
-            Response<Credits> creditsResponse = moviesService.credits(14160).execute();
-            crewMemberList = creditsResponse.body().crew;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-            CrewMember director = crewMemberList.stream().filter(e -> e.job.equals("Director")).findFirst().orElse(null);
+//        // INFO: GET Cast Members
+//        // ! First Need to fetch TMDB_MOVIE_ID to work
+//
+//        List<CrewMember> crewMemberList = new ArrayList<>();
+//
+//        try {
+//            Response<Credits> creditsResponse = moviesService.credits(14160).execute();
+//            crewMemberList = creditsResponse.body().crew;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//            CrewMember director = crewMemberList.stream().filter(e -> e.job.equals("Director")).findFirst().orElse(null);
 
     }
 }
