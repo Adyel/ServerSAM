@@ -21,16 +21,16 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-
-
-    Connection connection;
-    {
-        try {
-            connection = DBConnect.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//
+//
+//    Connection connection;
+//    {
+//        try {
+//            connection = DBConnect.getConnection();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @FXML
     Circle dbStatus;
@@ -47,39 +47,43 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-//        this.dbStatus.setFill(Color.rgb(244, 91, 59));
-
-        // This is Database connection LED
-
-        this.dbStatus.setStroke(Color.BLACK);
-
-        if (connection == null) {
-            this.dbStatus.setFill(Color.rgb(244, 91, 59));
-        } else {
-            this.dbStatus.setFill(Color.rgb(107, 244, 66));
-        }
-
-
-
-        title.setCellValueFactory(new PropertyValueFactory<>("title"));
-        year.setCellValueFactory(new PropertyValueFactory<>("year"));
-
-        try {
-            Connection connection = DBConnect.getConnection();
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM Movie_List");
-
-            while (resultSet.next()){
-                list.add(new TableViewModel(resultSet.getString("Movie_Name"), resultSet.getInt("Year")));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        table.setItems(list);
-
-
-
-
     }
+
+
+//    @Override
+//    public void initialize(URL location, ResourceBundle resources) {
+//
+////        this.dbStatus.setFill(Color.rgb(244, 91, 59));
+//
+//        // This is Database connection LED
+//
+//        this.dbStatus.setStroke(Color.BLACK);
+//
+//        if (connection == null) {
+//            this.dbStatus.setFill(Color.rgb(244, 91, 59));
+//        } else {
+//            this.dbStatus.setFill(Color.rgb(107, 244, 66));
+//        }
+//
+//
+//
+//        title.setCellValueFactory(new PropertyValueFactory<>("title"));
+//        year.setCellValueFactory(new PropertyValueFactory<>("year"));
+//
+//        try {
+//            Connection connection = DBConnect.getConnection();
+//            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM Movie_List");
+//
+//            while (resultSet.next()){
+//                list.add(new TableViewModel(resultSet.getString("Movie_Name"), resultSet.getInt("Year")));
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        table.setItems(list);
+//
+//    }
+
 }

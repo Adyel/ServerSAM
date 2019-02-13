@@ -13,7 +13,7 @@ public class H2hibernate {
 
         Session session = factory.getCurrentSession();
 
-        MovieDetails movieDetails = new MovieDetails("New",2017,"1080p");
+        MovieDetails movieDetails = new MovieDetails("New",2017);
 
         try {
             session.beginTransaction();

@@ -27,11 +27,7 @@ dependencies {
     compile 'org.jsoup:jsoup:1.11.2'
     
     // https://mvnrepository.com/artifact/com.h2database/h2
-    compile 'com.h2database:h2:1.4.197'
-    
-
-    // https://github.com/holgerbrandl/themoviedbapi/
-    //compile group: 'info.movito', name: 'themoviedbapi', version:'1.7'
+    runtimeOnly 'com.h2database:h2:1.4.197'
 
     // https://github.com/google/gson
     compile 'com.google.code.gson:gson:2.8.2'
@@ -39,11 +35,11 @@ dependencies {
     // http://www.tinylog.org/
     compile 'org.tinylog:tinylog:1.3.4'
 
-    // https://square.github.io/retrofit/
-    compile 'com.squareup.retrofit2:retrofit:2.4.0'
-
-    // https://github.com/square/retrofit/tree/master/retrofit-converters/gson
-    compile 'com.squareup.retrofit2:converter-gson:2.4.0'
+//    // https://square.github.io/retrofit/
+//    compile 'com.squareup.retrofit2:retrofit:2.4.0'
+//
+//    // https://github.com/square/retrofit/tree/master/retrofit-converters/gson
+//    compile 'com.squareup.retrofit2:converter-gson:2.4.0'
 
     // http://hibernate.org/orm/documentation/getting-started/
     compile 'org.hibernate:hibernate-core:5.4.1.Final'
@@ -57,4 +53,16 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.commons/commons-text
     compile group: 'org.apache.commons', name: 'commons-text', version: '1.6'
 
+    // https://github.com/UweTrottmann/tmdb-java
+    implementation 'com.uwetrottmann.tmdb2:tmdb-java:2.0.0'
+
+    // https://github.com/controlsfx/controlsfx
+    implementation 'org.controlsfx:controlsfx:9.0.0'
+
+    // https://github.com/aalmiray/ikonli
+    implementation 'org.kordamp.ikonli:ikonli-javafx:11.1.0'
+    implementation 'org.kordamp.ikonli:ikonli-typicons-pack:11.1.0'
+
+    // https://github.com/UweTrottmann/tmdb-java
+    implementation 'com.uwetrottmann.tmdb2:tmdb-java:2.0.0'
 }

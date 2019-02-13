@@ -18,16 +18,9 @@ public class Scrapper {
     public static int counter = 0;
 
     public static void main(String[] args) {
-        String baseURL = "http://ftp2.circleftp.net/FILE--SERVER/English%20Movies/";
+        final String baseURL = "http://ftp2.circleftp.net/FILE--SERVER/English%20Movies/";
 
-//        File file = new File("src/main/resources/DataBase.db");
-//        file.delete();
-//        DBConnect.createNewDatabase();
 
-        // TODO: For 1080p Video
-        // ! Special Case
-        // scrap("http://172.16.50.4/SAM-FTP-1/English%20Movies%20%281080p%29/%281995%29%201080p%20%26%20Before/");
-        // ! Regular
         for (int year = 1996; year <= 2018; year++) {
             String finalURL = baseURL + "/" + year;
             scrap(finalURL);
@@ -72,7 +65,7 @@ public class Scrapper {
         for (Element name : names) {
 //            Logger.info(name.text());
 
-            String[] movieData = Parser.detectCleanMovienameAndYear(name.text());
+            String[] movieData = ParseData.detectCleanMovienameAndYear(name.text());
 
             System.out.println(movieData[0] + " " + movieData[1]);
 
