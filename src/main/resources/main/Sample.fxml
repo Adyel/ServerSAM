@@ -63,7 +63,7 @@
                            <children>
                               <HBox maxHeight="42.0" minWidth="30.0" prefHeight="42.0" prefWidth="600.0">
                                  <children>
-                                    <TextField prefHeight="26.0" prefWidth="459.0" promptText="Search">
+                                    <TextField fx:id="searchField" prefHeight="26.0" prefWidth="459.0" promptText="Search">
                                        <HBox.margin>
                                           <Insets left="5.0" right="7.0" top="7.0" />
                                        </HBox.margin>
