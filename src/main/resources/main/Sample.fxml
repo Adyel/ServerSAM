@@ -18,6 +18,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.CheckComboBox?>
 <?import org.controlsfx.control.cell.ImageGridCell?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
@@ -68,6 +69,11 @@
                                           <Insets left="5.0" right="7.0" top="7.0" />
                                        </HBox.margin>
                                     </TextField>
+                                    <CheckComboBox>
+                                       <HBox.margin>
+                                          <Insets top="6.0" />
+                                       </HBox.margin>
+                                    </CheckComboBox>
                                  </children>
                               </HBox>
                               <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="649.0" prefWidth="600.0">

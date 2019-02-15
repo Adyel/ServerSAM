@@ -11,6 +11,7 @@ mainClassName = 'main.Main'
 repositories {
     mavenCentral()
     jcenter()
+    maven {url 'https://oss.sonatype.org/content/repositories/snapshots'}
 }
 
 javafx {
@@ -57,7 +58,7 @@ dependencies {
     implementation 'com.uwetrottmann.tmdb2:tmdb-java:2.0.0'
 
     // https://github.com/controlsfx/controlsfx
-    implementation 'org.controlsfx:controlsfx:9.0.0'
+    implementation 'org.controlsfx:controlsfx:9.0.1-SNAPSHOT' // org/controlsfx/controlsfx/9.0.1-SNAPSHOT/
 
     // https://github.com/aalmiray/ikonli
     implementation 'org.kordamp.ikonli:ikonli-javafx:11.1.0'
