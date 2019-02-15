@@ -3,6 +3,8 @@
 = ServerSam
 Adyel Ullahil Mamun <adyel@live.com>
 
+:image[[![Build Status](https://travis-ci.com/Adyel/ServerSam.svg?branch=master)](https://travis-ci.com/Adyel/ServerSam)]
+
 :imagesdir: ./docs/image
 
 image::Logo.png[]
