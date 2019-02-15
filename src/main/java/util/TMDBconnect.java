@@ -1,8 +1,8 @@
 package util;
 
 import com.google.gson.Gson;
-import model.Movie;
-import model.Result;
+import model.json.Movie;
+import model.json.Result;
 import org.pmw.tinylog.Logger;
 
 import java.io.BufferedReader;
@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+@Deprecated
 public class TMDBconnect {
 
     private static String baseUrl = "https://api.themoviedb.org/3/search/movie?api_key=";

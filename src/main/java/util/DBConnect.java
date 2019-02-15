@@ -2,6 +2,7 @@ package util;
 
 import java.sql.*;
 
+@Deprecated
 public class DBConnect {
 
     private static final String sqliteConnection = "jdbc:sqlite:src/main/resources/DataBase.db";

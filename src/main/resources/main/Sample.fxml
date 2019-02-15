@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.CheckComboBox?>
+<?import org.controlsfx.control.cell.ImageGridCell?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="600.0" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
+   <top>
+      <ButtonBar prefHeight="81.0" prefWidth="580.0">
+        <buttons>
+            <Button maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
+               <graphic>
+                  <FontIcon iconLiteral="typ-arrow-sync" iconSize="40" selectionFill="#fcf38e" strokeLineCap="ROUND" />
+               </graphic>
+            </Button>
+            <Button layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
+               <graphic>
+                  <FontIcon iconLiteral="typ-arrow-sync" iconSize="40" selectionFill="#fcf38e" strokeLineCap="ROUND" />
+               </graphic>
+            </Button>
+            <Region prefHeight="81.0" prefWidth="315.0" />
+            <Button layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
+               <graphic>
+                  <FontIcon iconLiteral="typ-arrow-sync" iconSize="40" selectionFill="#fcf38e" strokeLineCap="ROUND" />
+               </graphic>
+            </Button>
+            <Button layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
+               <graphic>
+                  <FontIcon iconLiteral="typ-arrow-sync" iconSize="40" selectionFill="#fcf38e" strokeLineCap="ROUND" />
+               </graphic>
+            </Button>
+        </buttons>
+         <BorderPane.margin>
+            <Insets left="20.0" right="20.0" />
+         </BorderPane.margin>
+      </ButtonBar>
+   </top>
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Database">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="686.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox maxHeight="42.0" minWidth="30.0" prefHeight="42.0" prefWidth="600.0">
+                                 <children>
+                                    <TextField fx:id="searchField" prefHeight="26.0" prefWidth="459.0" promptText="Search">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="7.0" top="7.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <CheckComboBox>
+                                       <HBox.margin>
+                                          <Insets top="6.0" />
+                                       </HBox.margin>
+                                    </CheckComboBox>
+                                 </children>
+                              </HBox>
+                              <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="649.0" prefWidth="600.0">
+                                 <items>
+                                    <TableView fx:id="table" minHeight="450.0" minWidth="0.0" prefHeight="356.0" prefWidth="598.0">
+                                      <columns>
+                                        <TableColumn fx:id="title" prefWidth="258.0" text="Title" />
+                                        <TableColumn fx:id="year" minWidth="0.0" prefWidth="109.0" text="Year" />
+                                          <TableColumn fx:id="director" prefWidth="148.0" text="Director" />
+                                          <TableColumn fx:id="rating" prefWidth="43.0">
+                                             <graphic>
+                                                <FontIcon iconLiteral="typ-star-outline" iconSize="20" />
+                                             </graphic>
+                                          </TableColumn>
+                                          <TableColumn fx:id="subtitle" minWidth="0.0" prefWidth="40.0">
+                                             <graphic>
+                                                <FontIcon iconLiteral="typ-document-text" iconSize="20" />
+                                             </graphic>
+                                          </TableColumn>
+                                      </columns>
+                                    </TableView>
+                                    <GridPane alignment="TOP_RIGHT">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="17.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <ImageGridCell prefHeight="110.0" prefWidth="139.0" style="-fx-background-color: RED;" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </items>
+                              </SplitPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Status" />
+        </tabs>
+      </TabPane>
+   </center>
+   <rotationAxis>
+      <Point3D />
+   </rotationAxis>
+</BorderPane>
