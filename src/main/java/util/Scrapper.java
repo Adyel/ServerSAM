@@ -71,7 +71,7 @@ public class Scrapper {
             System.out.println(movieData[0] + " " + movieData[1]);
 
 
-            if (movieData != null && movieData.length == 2 && !movieData[1].isEmpty()){
+            if (movieData != null && movieData.length == 2 && !movieData[1].contains("")){
                 session.save(new MovieDetails(movieData[0],Integer.parseInt(movieData[1])) );
             }
         }
