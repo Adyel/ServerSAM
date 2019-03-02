@@ -26,27 +26,11 @@
    <top>
       <ButtonBar prefHeight="81.0" prefWidth="580.0">
         <buttons>
-            <Button maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
-               <graphic>
-                  <FontIcon iconLiteral="typ-arrow-sync" iconSize="40" selectionFill="#fcf38e" strokeLineCap="ROUND" />
-               </graphic>
-            </Button>
-            <Button layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
-               <graphic>
-                  <FontIcon iconLiteral="typ-arrow-sync" iconSize="40" selectionFill="#fcf38e" strokeLineCap="ROUND" />
-               </graphic>
-            </Button>
+            <Button maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
+            <Button layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
             <Region prefHeight="81.0" prefWidth="315.0" />
-            <Button layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
-               <graphic>
-                  <FontIcon iconLiteral="typ-arrow-sync" iconSize="40" selectionFill="#fcf38e" strokeLineCap="ROUND" />
-               </graphic>
-            </Button>
-            <Button layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
-               <graphic>
-                  <FontIcon iconLiteral="typ-arrow-sync" iconSize="40" selectionFill="#fcf38e" strokeLineCap="ROUND" />
-               </graphic>
-            </Button>
+            <Button layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
+            <Button layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
         </buttons>
          <BorderPane.margin>
             <Insets left="20.0" right="20.0" />
