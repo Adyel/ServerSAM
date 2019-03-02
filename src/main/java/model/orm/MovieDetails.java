@@ -1,6 +1,8 @@
 package model.orm;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "movie_list")
@@ -10,13 +12,13 @@ public class MovieDetails {
 
 
     public MovieDetails(String fileName, int year) {
-//        this.tmdbId = tmdbId;
         this.fileName = fileName;
         this.year = year;
     }
 
 
     @Id
+    @Column(name = "movie_id")
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int movieID;
 
@@ -49,6 +51,30 @@ public class MovieDetails {
 
     @Column(name = "release_date")
     private String releaseDate;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH
+    })
+    @JoinTable(name = "movie_genre",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private List<Genre> genres;
+
+
+
+    // INFO: Make life easier
+
+    public void addGenre(Genre genre){
+        if (genres == null){
+            genres = new ArrayList<>();
+        }
+        genres.add(genre);
+    }
+
+
+    // INFO: Getter & Setter
 
     public int getTmdbId() {
         return tmdbId;
@@ -128,5 +154,21 @@ public class MovieDetails {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public int getMovieID() {
+        return movieID;
+    }
+
+    public void setMovieID(int movieID) {
+        this.movieID = movieID;
+    }
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 }
