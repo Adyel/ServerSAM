@@ -1,6 +1,7 @@
 package main;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -16,6 +17,7 @@ import javafx.scene.shape.Circle;
 import model.fx.TableViewModel;
 import model.orm.Genre;
 import model.orm.MovieDetails;
+import org.controlsfx.control.CheckComboBox;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,6 +29,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -69,7 +72,11 @@ public class Controller implements Initializable {
     @FXML
     TextField searchField;
 
+    @FXML
+    CheckComboBox<String> checkComboBox;
+
     ObservableList<TableViewModel> tableViewModelObservableList = FXCollections.observableArrayList();
+    List<MovieDetails> movieDetailsList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -90,10 +97,47 @@ public class Controller implements Initializable {
         Session session = factory.openSession();
         session.beginTransaction();
 
-        List<MovieDetails> movieDetailsList = session.createQuery("from MovieDetails").getResultList();
+        movieDetailsList = session.createQuery("SELECT DISTINCT movie FROM MovieDetails movie").getResultList();
+        List<Genre> genreList = session.createQuery("FROM Genre").getResultList();
 
         session.getTransaction().commit();
-        factory.close();
+
+
+        // INFO: Add all genre to CheckComboBox
+        ObservableList<String> genres = FXCollections.observableArrayList(genreList.stream().map(Genre::getName).collect(Collectors.toList()));
+        checkComboBox.getItems().addAll(genres);
+
+        checkComboBox.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
+            public void onChanged(ListChangeListener.Change<? extends String> c) {
+//                System.out.println(checkComboBox.getCheckModel().getCheckedIndices());
+//                System.out.println(checkComboBox.getCheckModel().getCheckedItems().toString());
+
+                String query;
+
+                if (checkComboBox.getCheckModel().getCheckedIndices().isEmpty()){
+                    query = "FROM MovieDetails ";
+                }else {
+                    query = "SELECT DISTINCT movie FROM MovieDetails movie JOIN movie.genres genre WHERE genre.name IN (";
+
+                    for (String genre : checkComboBox.getCheckModel().getCheckedItems()){
+                        query = query + "'" + genre + "', ";
+                    }
+
+                    query = query.substring(0, query.length() - 2) + " )";
+                }
+
+                System.out.println(query);
+
+                Session session = factory.openSession();
+                session.beginTransaction();
+                movieDetailsList = session.createQuery(query).getResultList();
+                session.getTransaction().commit();
+
+                tableViewModelObservableList.clear();
+                tableViewModelObservableList = movieDetailsList.stream().map(TableViewModel::new).collect(Collectors.toCollection(FXCollections::observableArrayList));
+                table.setItems(tableViewModelObservableList);
+            }
+        });
 
         tableViewModelObservableList = movieDetailsList.stream().map(TableViewModel::new).collect(Collectors.toCollection(FXCollections::observableArrayList));
 
@@ -125,7 +169,7 @@ public class Controller implements Initializable {
     }
 
 
-//    @Override
+    //    @Override
 //    public void initialize(URL location, ResourceBundle resources) {
 //
 ////        this.dbStatus.setFill(Color.rgb(244, 91, 59));

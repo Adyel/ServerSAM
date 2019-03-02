@@ -19,11 +19,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.CheckComboBox?>
-<?import org.controlsfx.control.Rating?>
 <?import org.controlsfx.control.cell.ImageGridCell?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="600.0" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="600.0" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
    <top>
       <ButtonBar prefHeight="81.0" prefWidth="580.0">
         <buttons>
@@ -54,13 +53,7 @@
                                           <Insets left="5.0" right="7.0" top="7.0" />
                                        </HBox.margin>
                                     </TextField>
-                                    <CheckComboBox fx:id="checkComboBox" title="Genre">
-                                       <HBox.margin>
-                                          <Insets top="7.0" />
-                                       </HBox.margin>
-                                       <opaqueInsets>
-                                          <Insets right="10.0" />
-                                       </opaqueInsets></CheckComboBox>
+                                    <CheckComboBox fx:id="checkComboBox" />
                                  </children>
                               </HBox>
                               <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="649.0" prefWidth="600.0">
@@ -94,14 +87,6 @@
                                       </rowConstraints>
                                        <children>
                                           <ImageGridCell prefHeight="110.0" prefWidth="139.0" style="-fx-background-color: RED;" GridPane.columnIndex="1" />
-                                          <AnchorPane prefHeight="45.0" prefWidth="299.0" GridPane.rowIndex="1">
-                                             <children>
-                                                <Rating partialRating="true" prefHeight="32.0" prefWidth="43.0" />
-                                             </children>
-                                             <GridPane.margin>
-                                                <Insets left="10.0" top="10.0" />
-                                             </GridPane.margin>
-                                          </AnchorPane>
                                        </children>
                                     </GridPane>
                                  </items>

@@ -1,3 +1,4 @@
+import model.orm.Genre;
 import model.orm.MovieDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +14,13 @@ public class H2hibernate {
 
         Session session = factory.getCurrentSession();
 
-        MovieDetails movieDetails = new MovieDetails("New",2017);
+        MovieDetails movieDetails = new MovieDetails("TESTmovie",2009);
+
+        movieDetails.addGenre(new Genre(12));
+        movieDetails.addGenre(new Genre(14));
+        movieDetails.addGenre(new Genre(16));
+
+
 
         try {
             session.beginTransaction();

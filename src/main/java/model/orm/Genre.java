@@ -10,6 +10,10 @@ public class Genre {
 
     public Genre(){}
 
+    public Genre(int genreID){
+        this.genreID = genreID;
+    }
+
     public Genre(com.uwetrottmann.tmdb2.entities.Genre genre){
         this.genreID = genre.id;
         this.name = genre.name;

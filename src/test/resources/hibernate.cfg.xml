@@ -34,6 +34,7 @@
         <property name="hbm2ddl.auto">update</property>
 
         <mapping class="model.orm.MovieDetails"/>
+        <mapping class="model.orm.Genre"/>
 
     </session-factory>
 

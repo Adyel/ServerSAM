@@ -56,4 +56,7 @@ dependencies {
 
     // https://github.com/UweTrottmann/tmdb-java
     implementation 'com.uwetrottmann.tmdb2:tmdb-java:2.0.0'
+
+    // https://github.com/wtekiela/opensub4j
+    compile 'com.github.wtekiela:opensub4j:0.2.0'
 }
