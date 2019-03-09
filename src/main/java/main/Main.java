@@ -20,5 +20,10 @@ public class Main extends Application {
         primaryStage.show();
         primaryStage.setMinWidth(primaryStage.getWidth());
         primaryStage.setMinHeight(primaryStage.getHeight());
+        primaryStage.setOnCloseRequest(event -> closeProgram());
+    }
+
+    private void closeProgram() {
+        Controller.closeFactory();
     }
 }

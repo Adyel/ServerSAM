@@ -4,14 +4,12 @@
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -20,9 +18,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.CheckComboBox?>
 <?import org.controlsfx.control.Rating?>
+<?import org.controlsfx.control.cell.ImageGridCell?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="600.0" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
@@ -45,7 +43,7 @@
         <tabs>
           <Tab text="Database">
             <content>
-              <AnchorPane>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <VBox prefHeight="686.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -64,13 +62,10 @@
                                           <Insets right="10.0" />
                                        </opaqueInsets></CheckComboBox>
                                  </children>
-                                 <VBox.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </VBox.margin>
                               </HBox>
                               <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="649.0" prefWidth="600.0">
                                  <items>
-                                    <TableView fx:id="table" minHeight="450.0" minWidth="0.0" onMouseClicked="#displaySelectedMovie" prefHeight="356.0" prefWidth="598.0">
+                                    <TableView fx:id="table" minHeight="450.0" minWidth="0.0" prefHeight="356.0" prefWidth="598.0">
                                       <columns>
                                         <TableColumn fx:id="title" prefWidth="258.0" text="Title" />
                                         <TableColumn fx:id="year" minWidth="0.0" prefWidth="109.0" text="Year" />
@@ -89,30 +84,24 @@
                                     </TableView>
                                     <GridPane alignment="TOP_RIGHT">
                                       <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="416.0" minWidth="10.0" prefWidth="416.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="182.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                       </columnConstraints>
                                       <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="22.0" minHeight="0.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="17.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <AnchorPane GridPane.rowIndex="1">
+                                          <ImageGridCell prefHeight="110.0" prefWidth="139.0" style="-fx-background-color: RED;" GridPane.columnIndex="1" />
+                                          <AnchorPane prefHeight="45.0" prefWidth="299.0" GridPane.rowIndex="1">
                                              <children>
-                                                <Rating fx:id="starRating" max="10" partialRating="true" prefHeight="32.0" prefWidth="307.0" rating="0.0" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" />
+                                                <Rating partialRating="true" prefHeight="32.0" prefWidth="43.0" />
                                              </children>
                                              <GridPane.margin>
                                                 <Insets left="10.0" top="10.0" />
                                              </GridPane.margin>
                                           </AnchorPane>
-                                          <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="297.7294921875">
-                                             <GridPane.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                             </GridPane.margin>
-                                          </Text>
-                                          <ImageView fx:id="posterImage" cache="true" fitHeight="185.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowSpan="2147483647" />
-                                          <ProgressBar prefHeight="22.0" prefWidth="159.0" progress="0.48" visible="false" GridPane.rowIndex="2" />
                                        </children>
                                     </GridPane>
                                  </items>
@@ -123,10 +112,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Status">
-               <content>
-
-               </content></Tab>
+          <Tab text="Status" />
         </tabs>
       </TabPane>
    </center>

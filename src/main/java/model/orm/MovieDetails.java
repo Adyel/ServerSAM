@@ -1,7 +1,10 @@
 package model.orm;
 
+import com.uwetrottmann.tmdb2.entities.BaseMovie;
+
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,7 +18,6 @@ public class MovieDetails {
         this.fileName = fileName;
         this.year = year;
     }
-
 
     @Id
     @Column(name = "movie_id")
@@ -37,11 +39,12 @@ public class MovieDetails {
     @Column(name = "title")
     private String title;
 
+    @Lob
     @Column(name = "overview")
-    private String overView;
+    private String overview;
 
-    @Column(name = "rating")
-    private Double voteAverage;
+    @Column(name = "rating", columnDefinition = "Decimal(4,2) default '0.0'")
+    private Double voteAverage = 0.0;
 
     @Column(name = "popularity")
     private Double popularity;
@@ -49,10 +52,14 @@ public class MovieDetails {
     @Column(name = "language")
     private String originalLanguage;
 
-    @Column(name = "release_date")
-    private String releaseDate;
+    @Column(name = "poster_path")
+    private String posterPath;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+    @Column(name = "release_date")
+    @Temporal(TemporalType.DATE)
+    private Date releaseDate;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {
             CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH
     })
@@ -116,14 +123,6 @@ public class MovieDetails {
         this.title = title;
     }
 
-    public String getOverView() {
-        return overView;
-    }
-
-    public void setOverView(String overView) {
-        this.overView = overView;
-    }
-
     public Double getVoteAverage() {
         return voteAverage;
     }
@@ -148,11 +147,11 @@ public class MovieDetails {
         this.originalLanguage = originalLanguage;
     }
 
-    public String getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -162,6 +161,22 @@ public class MovieDetails {
 
     public void setMovieID(int movieID) {
         this.movieID = movieID;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
 
     public List<Genre> getGenres() {
