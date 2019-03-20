@@ -3,7 +3,6 @@ import com.github.wtekiela.opensub4j.impl.OpenSubtitlesClientImpl;
 import com.github.wtekiela.opensub4j.response.SubtitleInfo;
 import org.apache.xmlrpc.XmlRpcException;
 
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;

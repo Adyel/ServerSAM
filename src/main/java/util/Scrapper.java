@@ -10,7 +10,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pmw.tinylog.Logger;
-import sun.rmi.runtime.Log;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

@@ -1,7 +1,5 @@
 package model.orm;
 
-import com.uwetrottmann.tmdb2.entities.BaseMovie;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;

@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ui.Preferences;
 
 public class Main extends Application {
 
@@ -16,7 +18,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Sample.fxml"));
         primaryStage.setTitle("ServerSAM");
-        primaryStage.setScene(new Scene(root, 600, 800));
+//        Pane pref = new Preferences();
+        primaryStage.setScene(new Scene(root));
+//        primaryStage.setScene(new Scene(pref));
         primaryStage.show();
         primaryStage.setMinWidth(primaryStage.getWidth());
         primaryStage.setMinHeight(primaryStage.getHeight());
