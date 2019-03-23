@@ -9,7 +9,7 @@ import java.util.List;
 @Table(name = "movie_list")
 public class MovieDetails {
 
-    public MovieDetails(){};
+    public MovieDetails(){}
 
 
     public MovieDetails(String fileName, int year) {

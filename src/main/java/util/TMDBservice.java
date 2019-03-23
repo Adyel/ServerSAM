@@ -8,8 +8,6 @@ import com.uwetrottmann.tmdb2.services.SearchService;
 import model.orm.Genre;
 import model.orm.MovieDetails;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.pmw.tinylog.Logger;
 import retrofit2.Call;
 import retrofit2.Response;

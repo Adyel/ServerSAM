@@ -30,8 +30,6 @@ import org.apache.xmlrpc.XmlRpcException;
 import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.Rating;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.pmw.tinylog.Logger;
 import ui.controller.Preference;
 import util.HibernateConnMan;
