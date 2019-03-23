@@ -29,11 +29,23 @@
    <top>
       <ButtonBar prefHeight="81.0" prefWidth="580.0">
         <buttons>
-            <Button maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
-            <Button layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
+            <Button fx:id="refreshButton" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#buttonAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
+               <graphic>
+                  <FontIcon iconLiteral="typ-refresh-outline" iconSize="45" />
+               </graphic></Button>
+            <Button fx:id="updateInfoButton" layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#buttonAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
+               <graphic>
+                  <FontIcon iconLiteral="typ-arrow-sync-outline" iconSize="40" />
+               </graphic></Button>
             <Region prefHeight="81.0" prefWidth="315.0" />
-            <Button layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
-            <Button layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
+            <Button fx:id="downloadSub" layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#buttonAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
+               <graphic>
+                  <FontIcon iconLiteral="typ-document-add" iconSize="45" />
+               </graphic></Button>
+            <Button fx:id="settingsButton" layoutX="30.0" layoutY="21.0" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" onAction="#buttonAction" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
+               <graphic>
+                  <FontIcon iconLiteral="typ-cog-outline" iconSize="45" />
+               </graphic></Button>
         </buttons>
          <BorderPane.margin>
             <Insets left="20.0" right="20.0" />
@@ -114,7 +126,7 @@
                                                    </GridPane.margin>
                                                 </ImageView>
                                                 <ProgressBar prefHeight="22.0" prefWidth="159.0" progress="0.48" visible="false" GridPane.rowIndex="2" />
-                                                <TextArea fx:id="text" editable="false" prefHeight="148.0" prefWidth="512.0" wrapText="true">
+                                                <TextArea fx:id="text" editable="false" prefHeight="148.0" prefWidth="512.0" visible="false" wrapText="true">
                                                    <GridPane.margin>
                                                       <Insets left="5.0" top="5.0" />
                                                    </GridPane.margin>

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ui.Preferences;
+import util.HibernateConnMan;
 
 public class Main extends Application {
 
@@ -16,11 +17,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
         primaryStage.setTitle("ServerSAM");
-//        Pane pref = new Preferences();
         primaryStage.setScene(new Scene(root));
-//        primaryStage.setScene(new Scene(pref));
         primaryStage.show();
         primaryStage.setMinWidth(primaryStage.getWidth());
         primaryStage.setMinHeight(primaryStage.getHeight());
@@ -28,6 +27,6 @@ public class Main extends Application {
     }
 
     private void closeProgram() {
-        Controller.closeFactory();
+        HibernateConnMan.closeFactory();
     }
 }

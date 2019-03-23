@@ -20,17 +20,17 @@ public class ParseData {
 
     private boolean validData = false;
 
-    public static Set<String> hash_check = new HashSet<>();
+    private static Set<String> hashSet = new HashSet<>();
 
-    ArrayList<MovieDetails> movieDetailsArrayList = new ArrayList<MovieDetails>();
+    private static List<MovieDetails> movieDetailsList = new ArrayList<>();
 
     // ! Better implementation
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ParseData.class);
 
-    private static final String DELIMITER = "[\\[\\](){} _,.-]";
+    private final String DELIMITER = "[\\[\\](){} _,.-]";
 
-    public static String[] stopwords = {"1080", "1080i", "1080p", "2160p", "2160i", "3d", "480i", "480p", "576i", "576p", "720", "720i", "720p",
+    private final String[] stopwords = {"1080", "1080i", "1080p", "2160p", "2160i", "3d", "480i", "480p", "576i", "576p", "720", "720i", "720p",
             "ac3", "ac3ld", "ac3md", "aoe", "atmos", "bd5", "bdrip", "bdrip", "blueray", "bluray", "brrip", "cam", "cd1", "cd2", "cd3", "cd4", "cd5", "cd6",
             "cd7", "cd8", "cd9", "complete", "custom", "dc", "disc1", "disc2", "disc3", "disc4", "disc5", "disc6", "disc7", "disc8", "disc9", "divx",
             "divx5", "dl", "docu", "dsr", "dsrip", "dts", "dtv", "dubbed", "dutch", "dvd", "dvd1", "dvd2", "dvd3", "dvd4", "dvd5", "dvd6", "dvd7", "dvd8",
@@ -41,17 +41,18 @@ public class ParseData {
             "workprint", "ws", "www", "x264", "xf", "xvid", "xvidvd", "xxx"};
 
     // clean before splitting (needs delimiter in front!)
-    public static String[] cleanwords = {"24\\.000", "23\\.976", "23\\.98", "24\\.00"};
+    private String[] cleanwords = {"24\\.000", "23\\.976", "23\\.98", "24\\.00"};
 
 
     public ParseData() {
     }
 
-    ;
-
 
     @Deprecated
     public void setFileName(String _fullTitle) {
+
+
+
         if (_fullTitle.contains("(") && _fullTitle.contains(")")) {
             String[] splitted = _fullTitle.split("[\\(\\)]");
             name = splitted[0].trim();
@@ -83,7 +84,7 @@ public class ParseData {
      * @param filename the filename to get the title from
      * @return title/year string (year can be empty)
      */
-    public static String[] detectCleanMovienameAndYear(String filename) {
+    private String[] detectCleanMovieNameAndYear(String filename) {
         String[] ret = {"", ""};
         // use trace to not remove logging completely (function called way to often on multi movie dir parsing)
         LOGGER.trace("Parse filename for movie title: \"" + filename + "\"");
@@ -227,7 +228,7 @@ public class ParseData {
      * @param imdbId the imdb id
      * @return true, if is valid imdb id
      */
-    public static boolean isValidImdbId(String imdbId) {
+    private static boolean isValidImdbId(String imdbId) {
         if (StringUtils.isEmpty(imdbId)) {
             return false;
         }
@@ -235,33 +236,39 @@ public class ParseData {
         return imdbId.matches("tt\\d{7}");
     }
 
-
+    @Deprecated
     public void insertToList() {
 
         if (validData) {
-            if (hash_check.add(name + year)) {
-                movieDetailsArrayList.add(new MovieDetails(name, year));
+            if (hashSet.add(name + year)) {
+                movieDetailsList.add(new MovieDetails(name, year));
             }
         }
     }
 
-    public ArrayList<MovieDetails> getMovieDetails() {
-        return movieDetailsArrayList;
+    /**
+     * This function will get the filename and Clean the String. It
+     * will separate "Title" & "Release Year" of the movie and create
+     * a hash_list with it. If a entry does not exist on the hash_list
+     * it will be added to the "MovieDetails" Collection.
+     *
+     * @param fileName the filename to get the title and year from.
+     */
+    public void add(String fileName){
+        String[] movie = detectCleanMovieNameAndYear(fileName);
+
+        org.pmw.tinylog.Logger.info(movie[0] + " " + movie[1]);
+
+        if ( hashSet.add(movie[0] + movie[1]) && StringUtils.isNotBlank(movie[1]) ){
+            movieDetailsList.add( new MovieDetails(movie[0], Integer.parseInt(movie[1])) );
+        }
     }
 
-    public String getName() {
-        return name;
+    public static void flush(){
+        movieDetailsList.clear();
     }
 
-    public int getYear() {
-        return year;
-    }
-
-    public String getQuality() {
-        return quality;
-    }
-
-    public boolean getDataValidity() {
-        return validData;
+    public List<MovieDetails> getMovieDetailsList() {
+        return movieDetailsList;
     }
 }

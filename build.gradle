@@ -1,6 +1,6 @@
 plugins {
     id 'application'
-    id "org.sonarqube" version "2.6"    // Static analysis
+    id "org.sonarqube" version "2.7"    // Static analysis
 }
 
 group 'com.adyel'
@@ -13,7 +13,8 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     jcenter()
-    maven {url 'https://oss.sonatype.org/content/repositories/snapshots'}
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots'}
+    maven { url "http://maven.bestsolution.at/efxclipse-releases"}
 }
 
 
@@ -59,4 +60,9 @@ dependencies {
 
     // https://github.com/wtekiela/opensub4j
     compile 'com.github.wtekiela:opensub4j:0.2.0'
+
+    // https://github.com/dlemmermann/PreferencesFX
+    compile 'com.dlsc.preferencesfx:preferencesfx-core:2.1.0'
+
+    implementation 'com.diffplug.durian:durian:3.4.0'
 }
