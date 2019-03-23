@@ -10,7 +10,7 @@ addons:
       secure: SONAR_TOKEN
       
 jdk:
-  - openjdk11
+  - oraclejdk8
 script:
   - ./gradlew sonarqube -Dsonar.projectKey=Adyel_ServerSam -Dsonar.organization=adyel-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=6247954df47068d34c7d5c3ee67f688b0e724b17
 

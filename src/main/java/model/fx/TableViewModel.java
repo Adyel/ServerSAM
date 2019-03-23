@@ -4,6 +4,7 @@ import model.orm.MovieDetails;
 
 public class TableViewModel {
 
+    private int id;
     private String title;
     private Integer year;
     private double rating;
@@ -11,8 +12,11 @@ public class TableViewModel {
     private String director;
 
     public TableViewModel(MovieDetails movieDetails) {
-        this.title = movieDetails.getFileName();
-        this.year = movieDetails.getYear();
+
+        id = movieDetails.getMovieID();
+        title = movieDetails.getFileName();
+        year = movieDetails.getYear();
+        rating = movieDetails.getVoteAverage();
     }
 
     public String getTitle() {
@@ -53,5 +57,13 @@ public class TableViewModel {
 
     public void setDirector(String director) {
         this.director = director;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

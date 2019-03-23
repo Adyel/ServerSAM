@@ -1,22 +1,24 @@
 package model.orm;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "movie_list")
 public class MovieDetails {
 
-    public MovieDetails(){};
+    public MovieDetails(){}
 
 
     public MovieDetails(String fileName, int year) {
-//        this.tmdbId = tmdbId;
         this.fileName = fileName;
         this.year = year;
     }
 
-
     @Id
+    @Column(name = "movie_id")
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int movieID;
 
@@ -35,11 +37,12 @@ public class MovieDetails {
     @Column(name = "title")
     private String title;
 
+    @Lob
     @Column(name = "overview")
-    private String overView;
+    private String overview;
 
-    @Column(name = "rating")
-    private Double voteAverage;
+    @Column(name = "rating", columnDefinition = "Decimal(4,2) default '0.0'")
+    private Double voteAverage = 0.0;
 
     @Column(name = "popularity")
     private Double popularity;
@@ -47,8 +50,36 @@ public class MovieDetails {
     @Column(name = "language")
     private String originalLanguage;
 
+    @Column(name = "poster_path")
+    private String posterPath;
+
     @Column(name = "release_date")
-    private String releaseDate;
+    @Temporal(TemporalType.DATE)
+    private Date releaseDate;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {
+            CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH
+    })
+    @JoinTable(name = "movie_genre",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private List<Genre> genres;
+
+
+
+    // INFO: Make life easier
+
+    public void addGenre(Genre genre){
+        if (genres == null){
+            genres = new ArrayList<>();
+        }
+        genres.add(genre);
+    }
+
+
+    // INFO: Getter & Setter
 
     public int getTmdbId() {
         return tmdbId;
@@ -90,14 +121,6 @@ public class MovieDetails {
         this.title = title;
     }
 
-    public String getOverView() {
-        return overView;
-    }
-
-    public void setOverView(String overView) {
-        this.overView = overView;
-    }
-
     public Double getVoteAverage() {
         return voteAverage;
     }
@@ -122,11 +145,43 @@ public class MovieDetails {
         this.originalLanguage = originalLanguage;
     }
 
-    public String getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public int getMovieID() {
+        return movieID;
+    }
+
+    public void setMovieID(int movieID) {
+        this.movieID = movieID;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 }

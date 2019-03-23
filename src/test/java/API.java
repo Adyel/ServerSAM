@@ -1,13 +1,9 @@
 import com.uwetrottmann.tmdb2.Tmdb;
-import com.uwetrottmann.tmdb2.entities.CastMember;
-import com.uwetrottmann.tmdb2.entities.Credits;
-import com.uwetrottmann.tmdb2.entities.CrewMember;
 import com.uwetrottmann.tmdb2.entities.GenreResults;
 import com.uwetrottmann.tmdb2.services.CreditsService;
 import com.uwetrottmann.tmdb2.services.MoviesService;
 import com.uwetrottmann.tmdb2.services.SearchService;
 import model.orm.Genre;
-import model.orm.MovieDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -25,8 +21,6 @@ public class API {
         CreditsService creditsService = tmdb.creditsService();
         MoviesService moviesService = tmdb.moviesService();
         Call<GenreResults> genreResults = tmdb.genreService().movie("English");
-
-
 
 
         // INFO: GET Genre and Save it to Database
