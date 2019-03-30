@@ -1,15 +1,13 @@
 package util;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import org.hibernate.Session;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pmw.tinylog.Logger;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-
 
 public class Scrapper {
 
@@ -50,18 +48,18 @@ public class Scrapper {
 
     ParseData parseData = new ParseData();
 
-    if (names != null){
+    if (names != null) {
 
-        for (Element name : names) {
-            parseData.add(name.text());
-        }
+      for (Element name : names) {
+        parseData.add(name.text());
+      }
 
-        Session session = HibernateConnMan.getSession();
-        session.beginTransaction();
-        parseData.getMovieDetailsList().forEach(session::save);
-        session.getTransaction().commit();
-    }else {
-        Logger.warn("Scrapping Failed! Could not find any matching element");
+      Session session = HibernateConnMan.getSession();
+      session.beginTransaction();
+      parseData.getMovieDetailsList().forEach(session::save);
+      session.getTransaction().commit();
+    } else {
+      Logger.warn("Scrapping Failed! Could not find any matching element");
     }
   }
 }

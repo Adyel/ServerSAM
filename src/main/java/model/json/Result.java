@@ -1,58 +1,57 @@
-
 package model.json;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
-
 
 @Deprecated
 public class Result {
 
-    @SerializedName("page")
-    @Expose
-    private Integer page;
-    @SerializedName("total_results")
-    @Expose
-    private Integer totalResults;
-    @SerializedName("total_pages")
-    @Expose
-    private Integer totalPages;
-    @SerializedName("results")
-    @Expose
-    private List<Movie> movies = null;
+  @SerializedName("page")
+  @Expose
+  private Integer page;
 
-    public Integer getPage() {
-        return page;
-    }
+  @SerializedName("total_results")
+  @Expose
+  private Integer totalResults;
 
-    public void setPage(Integer page) {
-        this.page = page;
-    }
+  @SerializedName("total_pages")
+  @Expose
+  private Integer totalPages;
 
-    public Integer getTotalResults() {
-        return totalResults;
-    }
+  @SerializedName("results")
+  @Expose
+  private List<Movie> movies = null;
 
-    public void setTotalResults(Integer totalResults) {
-        this.totalResults = totalResults;
-    }
+  public Integer getPage() {
+    return page;
+  }
 
-    public Integer getTotalPages() {
-        return totalPages;
-    }
+  public void setPage(Integer page) {
+    this.page = page;
+  }
 
-    public void setTotalPages(Integer totalPages) {
-        this.totalPages = totalPages;
-    }
+  public Integer getTotalResults() {
+    return totalResults;
+  }
 
-    public List<Movie> getMovies() {
-        return movies;
-    }
+  public void setTotalResults(Integer totalResults) {
+    this.totalResults = totalResults;
+  }
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
-    }
+  public Integer getTotalPages() {
+    return totalPages;
+  }
 
+  public void setTotalPages(Integer totalPages) {
+    this.totalPages = totalPages;
+  }
+
+  public List<Movie> getMovies() {
+    return movies;
+  }
+
+  public void setMovies(List<Movie> movies) {
+    this.movies = movies;
+  }
 }

@@ -8,7 +8,7 @@ addons:
     organization: "adyel-github"
     token:
       secure: SONAR_TOKEN
-      
+
 jdk:
   - oraclejdk8
 script:
