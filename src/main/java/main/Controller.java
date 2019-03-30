@@ -5,6 +5,19 @@ import com.github.wtekiela.opensub4j.impl.OpenSubtitlesClientImpl;
 import com.github.wtekiela.opensub4j.response.MovieInfo;
 import com.github.wtekiela.opensub4j.response.SubtitleFile;
 import com.github.wtekiela.opensub4j.response.SubtitleInfo;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Objects;
+import java.util.ResourceBundle;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -16,7 +29,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,54 +54,24 @@ import util.HibernateConnMan;
 import util.ParseData;
 import util.TMDBservice;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
 public class Controller implements Initializable {
 
   @FXML Circle dbStatus;
-
-  @FXML private TableView<TableViewModel> table;
-
-  @FXML private TableColumn<TableViewModel, String> title;
-
-  @FXML private TableColumn<TableViewModel, Integer> year;
-
-  @FXML private TableColumn<TableViewModel, Double> rating;
-
-  @FXML private TableColumn<TableViewModel, String> director;
-
-  @FXML private TableColumn<TableViewModel, Boolean> subtitle;
-
   @FXML TextField searchField;
-
   @FXML CheckComboBox<String> checkComboBox;
-
   @FXML TextArea text;
-
   @FXML ImageView posterImage;
-
   @FXML Rating starRating;
-
   @FXML Button settingsButton;
-
   @FXML Button refreshButton;
-
   @FXML Button updateInfoButton;
-
   @FXML Button downloadSub;
-
+  @FXML private TableView<TableViewModel> table;
+  @FXML private TableColumn<TableViewModel, String> title;
+  @FXML private TableColumn<TableViewModel, Integer> year;
+  @FXML private TableColumn<TableViewModel, Double> rating;
+  @FXML private TableColumn<TableViewModel, String> director;
+  @FXML private TableColumn<TableViewModel, Boolean> subtitle;
   private ObservableList<TableViewModel> tableViewModelObservableList =
       FXCollections.observableArrayList();
   private FilteredList<TableViewModel> tableViewModelFilteredList;
@@ -141,8 +129,7 @@ public class Controller implements Initializable {
 
   private void loadDate() {
     // INFO: Start Session
-    Session session = HibernateConnMan.getSession();
-    session.beginTransaction();
+    session = HibernateConnMan.getSession(session);
 
     // INFO: Load all the movies
     movieDetailsList =
@@ -160,12 +147,7 @@ public class Controller implements Initializable {
             genreList.stream().map(Genre::getName).collect(Collectors.toList()));
     checkComboBox.getItems().addAll(genres);
 
-    // INFO: Refresh Table
-    tableViewModelObservableList =
-        movieDetailsList.stream()
-            .map(TableViewModel::new)
-            .collect(Collectors.toCollection(FXCollections::observableArrayList));
-    table.setItems(tableViewModelObservableList);
+    loadTable();
   }
 
   private ListChangeListener<String> updateListOnChange() {
@@ -190,21 +172,11 @@ public class Controller implements Initializable {
 
       Logger.debug(query);
 
-      session = HibernateConnMan.getSession();
-      session.beginTransaction();
+      session = HibernateConnMan.getSession(session);
       movieDetailsList = session.createQuery(query).getResultList();
       session.getTransaction().commit();
 
-      // INFO: Clear and load table
-      tableViewModelObservableList.clear();
-      tableViewModelObservableList =
-          movieDetailsList.stream()
-              .map(TableViewModel::new)
-              .collect(Collectors.toCollection(FXCollections::observableArrayList));
-      table.setItems(tableViewModelObservableList);
-
-      // ! Load Search
-      tableViewModelFilteredList = new FilteredList<>(tableViewModelObservableList, e -> true);
+      loadTable();
 
       // ! Load suggestion
       //            TextFields.bindAutoCompletion(searchField,
@@ -226,12 +198,15 @@ public class Controller implements Initializable {
     Logger.debug(isTableColumn);
     Logger.debug(clickParent);
 
-    //    Session session = sessionFactory.getCurrentSession();
-
     if (isTableRow || isTableColumn) {
 
-      session = HibernateConnMan.getSession();
-      session.beginTransaction();
+      if (!session.isOpen()) {
+        session = HibernateConnMan.getSession();
+      }
+      if (!session.getTransaction().isActive()) {
+        session.beginTransaction();
+      }
+
       int movieId = table.getSelectionModel().getSelectedItem().getId();
       MovieDetails movie =
           (MovieDetails)
@@ -249,10 +224,15 @@ public class Controller implements Initializable {
         // load image from web and Display
         Image image = new Image("http://image.tmdb.org/t/p/w185" + movie.getPosterPath());
         posterImage.setImage(image);
+        posterImage.setVisible(true);
 
         // Show star Rating
         starRating.setVisible(true);
         starRating.setRating(movie.getVoteAverage());
+      } else {
+        text.setVisible(false);
+        posterImage.setVisible(false);
+        starRating.setVisible(false);
       }
       session.close();
     }
@@ -280,10 +260,19 @@ public class Controller implements Initializable {
       String dirPath = Preference.preferences.get("dir_path", null);
       scanFolders(dirPath);
     } else if (clickedButton.equals(updateInfoButton)) {
-      TMDBservice tmdBservice = new TMDBservice();
-      tmdBservice.fetchData();
-      tmdBservice.updateDatabase();
-      loadDate();
+
+      Thread thread =
+          new Thread(
+              () -> {
+                TMDBservice tmdBservice = new TMDBservice();
+                tmdBservice.loadGenre();
+                tmdBservice.fetchData();
+                tmdBservice.updateDatabase();
+                loadDate();
+              });
+
+      thread.start();
+
     } else if (clickedButton.equals(downloadSub)) {
       TableViewModel movieModel = table.getSelectionModel().getSelectedItem();
       downloadSubtitle(movieModel.getTitle(), movieModel.getYear());
@@ -306,43 +295,64 @@ public class Controller implements Initializable {
           osClient.downloadSubtitles(subtitleInfo.getSubtitleFileId()).get(0);
 
       Path path = Paths.get("/home/adyel/Desktop/" + query + ".srt");
-      try (BufferedWriter writer = Files.newBufferedWriter(path, Charset.forName("UTF-8"))) {
+      try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8)) {
         writer.write(subtitleFile.getContentAsString("UTF-8"));
       } catch (IOException ex) {
-        ex.printStackTrace();
+        Logger.debug(ex);
       }
 
     } catch (MalformedURLException e) {
-      e.printStackTrace();
+      Logger.debug(e);
     } catch (XmlRpcException e) {
-      e.printStackTrace();
+      Logger.info(e);
     }
   }
 
+  private void loadTable() {
+    // INFO: Clear and load table
+    tableViewModelObservableList.clear();
+    tableViewModelObservableList =
+        movieDetailsList.stream()
+            .map(TableViewModel::new)
+            .collect(Collectors.toCollection(FXCollections::observableArrayList));
+    table.setItems(tableViewModelObservableList);
+
+    // ! Load Search
+    tableViewModelFilteredList = new FilteredList<>(tableViewModelObservableList, e -> true);
+  }
+
   private void scanFolders(String dirPath) {
-    List<Path> paths = null;
-    try {
-      paths =
-          Files.list(Paths.get(dirPath)).filter(Files::isDirectory).collect(Collectors.toList());
-    } catch (IOException e) {
-      Logger.debug("Error Occurred", e);
-    }
+    Thread thread =
+        new Thread(
+            () -> {
+              List<Path> paths = null;
+              try {
+                paths =
+                    Files.list(Paths.get(dirPath))
+                        .filter(Files::isDirectory)
+                        .collect(Collectors.toList());
+              } catch (IOException e) {
+                Logger.debug("Error Occurred", e);
+              }
 
-    ParseData parseData = new ParseData();
+              ParseData parseData = new ParseData();
 
-    paths.stream()
-        .filter(Objects::nonNull)
-        .forEach(
-            path -> {
-              Logger.debug(path.getFileName());
-              parseData.add(path.toFile().getName());
+              paths.stream()
+                  .filter(Objects::nonNull)
+                  .forEach(
+                      path -> {
+                        Logger.debug(path.getFileName());
+                        parseData.add(path.toFile().getName());
+                      });
+
+              session = HibernateConnMan.getSession(session);
+              //      session.beginTransaction();
+              parseData.getMovieDetailsList().forEach(session::save);
+              session.getTransaction().commit();
+
+              loadDate();
             });
 
-    session = HibernateConnMan.getSession();
-    session.beginTransaction();
-    parseData.getMovieDetailsList().forEach(session::save);
-    session.getTransaction().commit();
-
-    loadDate();
+    thread.start();
   }
 }

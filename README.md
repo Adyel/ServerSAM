@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/Adyel/ServerSam.svg?branch=master)](https://travis-ci.com/Adyel/ServerSam) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Adyel_ServerSam&metric=alert_status)](https://sonarcloud.io/dashboard?id=Adyel_ServerSam)
+[![Build Status](https://travis-ci.com/Adyel/ServerSam.svg?branch=master)](https://travis-ci.com/Adyel/ServerSam) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Adyel_ServerSam&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=Adyel_ServerSam) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Adyel_ServerSam&metric=ncloc)](https://sonarcloud.io/dashboard?id=Adyel_ServerSam)
 
 
 # এটা কি জিনিস ?

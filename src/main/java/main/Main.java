@@ -9,22 +9,22 @@ import util.HibernateConnMan;
 
 public class Main extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+  public static void main(String[] args) {
+    launch(args);
+  }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
-        primaryStage.setTitle("ServerSAM");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-        primaryStage.setMinWidth(primaryStage.getWidth());
-        primaryStage.setMinHeight(primaryStage.getHeight());
-        primaryStage.setOnCloseRequest(event -> closeProgram());
-    }
+  @Override
+  public void start(Stage primaryStage) throws Exception {
+    Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
+    primaryStage.setTitle("ServerSAM");
+    primaryStage.setScene(new Scene(root));
+    primaryStage.show();
+    primaryStage.setMinWidth(primaryStage.getWidth());
+    primaryStage.setMinHeight(primaryStage.getHeight());
+    primaryStage.setOnCloseRequest(event -> closeProgram());
+  }
 
-    private void closeProgram() {
-        HibernateConnMan.closeFactory();
-    }
+  private void closeProgram() {
+    HibernateConnMan.closeFactory();
+  }
 }
