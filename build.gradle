@@ -13,8 +13,8 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     jcenter()
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots'}
-    maven { url "http://maven.bestsolution.at/efxclipse-releases"}
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url "http://maven.bestsolution.at/efxclipse-releases" }
 }
 
 
@@ -23,7 +23,7 @@ dependencies {
 
     // jsoup HTML parser library @ https://jsoup.org/
     compile 'org.jsoup:jsoup:1.11.2'
-    
+
     // https://mvnrepository.com/artifact/com.h2database/h2
     runtimeOnly 'com.h2database:h2:1.4.197'
 
