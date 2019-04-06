@@ -8,37 +8,37 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
   minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
-  fx:controller="ui.controller.Preference" fx:id="borderPane">
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.Preference">
   <bottom>
-    <ButtonBar BorderPane.alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
-      <BorderPane.margin>
-        <Insets left="10.0" right="10.0"/>
-      </BorderPane.margin>
+    <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
       <buttons>
-        <Button mnemonicParsing="false" onAction="#buttonAction" text="Apply" fx:id="apply"/>
-        <Button cancelButton="true" mnemonicParsing="false" onAction="#buttonAction" text="Cancel"
-          fx:id="cancel"/>
+        <Button fx:id="apply" mnemonicParsing="false" onAction="#buttonAction" text="Apply"/>
+        <Button fx:id="cancel" cancelButton="true" mnemonicParsing="false" onAction="#buttonAction"
+          text="Cancel"/>
       </buttons>
       <opaqueInsets>
         <Insets/>
       </opaqueInsets>
+      <BorderPane.margin>
+        <Insets left="10.0" right="10.0"/>
+      </BorderPane.margin>
     </ButtonBar>
   </bottom>
   <center>
-    <VBox BorderPane.alignment="CENTER" alignment="CENTER">
+    <VBox alignment="CENTER" BorderPane.alignment="CENTER">
       <children>
         <HBox alignment="CENTER_LEFT" spacing="15.0">
+          <children>
+            <Label text="Movie Folder"/>
+            <TextField fx:id="dirPath" prefHeight="26.0" prefWidth="371.0"/>
+            <Button fx:id="folderSelector" mnemonicParsing="false" onAction="#buttonAction"
+              text="Browse"/>
+          </children>
           <VBox.margin>
             <Insets left="10.0" right="10.0"/>
           </VBox.margin>
-          <children>
-            <Button mnemonicParsing="false" onAction="#buttonAction" text="Browse"
-              fx:id="folderSelector"/>
-            <Label text="Movie Folder"/>
-            <TextField prefHeight="26.0" prefWidth="371.0" fx:id="dirPath"/>
-          </children>
         </HBox>
       </children>
     </VBox>
