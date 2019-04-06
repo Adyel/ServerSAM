@@ -64,5 +64,10 @@ dependencies {
     // https://github.com/dlemmermann/PreferencesFX
     compile 'com.dlsc.preferencesfx:preferencesfx-core:2.1.0'
 
-    implementation 'com.diffplug.durian:durian:3.4.0'
+    // https://projectlombok.org/setup/gradle
+    compileOnly 'org.projectlombok:lombok:1.18.6'
+    annotationProcessor 'org.projectlombok:lombok:1.18.6'
+
+    // https://github.com/DozerMapper/dozer
+    compile group: 'com.github.dozermapper', name: 'dozer-core', version: '6.4.1'
 }
