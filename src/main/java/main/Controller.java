@@ -30,6 +30,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -66,6 +67,7 @@ public class Controller implements Initializable {
   @FXML Button refreshButton;
   @FXML Button updateInfoButton;
   @FXML Button downloadSub;
+  @FXML ProgressBar progressBar;
   @FXML private TableView<TableViewModel> table;
   @FXML private TableColumn<TableViewModel, String> title;
   @FXML private TableColumn<TableViewModel, Integer> year;
@@ -265,17 +267,35 @@ public class Controller implements Initializable {
           new Thread(
               () -> {
                 TMDBservice tmdBservice = new TMDBservice();
+
+                progressBar.setVisible(true);
+                progressBar.setProgress(0.0);
+
                 tmdBservice.loadGenre();
+                progressBar.setProgress(0.2);
+
                 tmdBservice.fetchData();
+                progressBar.setProgress(0.7);
+
                 tmdBservice.updateDatabase();
+                progressBar.setProgress(0.9);
                 loadDate();
+                progressBar.setVisible(false);
               });
 
       thread.start();
 
     } else if (clickedButton.equals(downloadSub)) {
-      TableViewModel movieModel = table.getSelectionModel().getSelectedItem();
-      downloadSubtitle(movieModel.getTitle(), movieModel.getYear());
+
+      Thread thread =
+          new Thread(
+              () -> {
+                TableViewModel movieModel = table.getSelectionModel().getSelectedItem();
+                downloadSubtitle(movieModel.getTitle(), movieModel.getYear());
+              }
+          );
+
+      thread.start();
     }
   }
 
@@ -294,7 +314,7 @@ public class Controller implements Initializable {
       SubtitleFile subtitleFile =
           osClient.downloadSubtitles(subtitleInfo.getSubtitleFileId()).get(0);
 
-      Path path = Paths.get("/home/adyel/Desktop/" + query + ".srt");
+      Path path = Paths.get( System.getProperty("user.home") + System.getProperty("file.separator") + "Desktop" + System.getProperty("file.separator") + query + ".srt");
       try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8)) {
         writer.write(subtitleFile.getContentAsString("UTF-8"));
       } catch (IOException ex) {
@@ -325,6 +345,11 @@ public class Controller implements Initializable {
     Thread thread =
         new Thread(
             () -> {
+
+
+              progressBar.setVisible(true);
+              progressBar.setProgress(0.0);
+
               List<Path> paths = null;
               try {
                 paths =
@@ -337,6 +362,8 @@ public class Controller implements Initializable {
 
               ParseData parseData = new ParseData();
 
+              progressBar.setProgress(0.5);
+
               paths.stream()
                   .filter(Objects::nonNull)
                   .forEach(
@@ -346,9 +373,11 @@ public class Controller implements Initializable {
                       });
 
               session = HibernateConnMan.getSession(session);
-              //      session.beginTransaction();
               parseData.getMovieDetailsList().forEach(session::save);
               session.getTransaction().commit();
+
+              progressBar.setProgress(1.0);
+              progressBar.setVisible(false);
 
               loadDate();
             });
