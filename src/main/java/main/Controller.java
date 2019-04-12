@@ -139,10 +139,6 @@ public class Controller implements Initializable {
     List<Genre> genreList = session.createQuery("FROM Genre").getResultList();
     session.getTransaction().commit();
 
-    // ! Load all suggestion to searchBox
-    //        TextFields.bindAutoCompletion(searchField,
-    // movieDetailsList.stream().map(MovieDetails::getFileName).collect(Collectors.toList()));
-
     // INFO: Add all genre to CheckComboBox
     ObservableList<String> genres =
         FXCollections.observableArrayList(
@@ -157,32 +153,32 @@ public class Controller implements Initializable {
       Logger.info(checkComboBox.getCheckModel().getCheckedIndices());
       Logger.debug(checkComboBox.getCheckModel().getCheckedItems().toString());
 
-      String query;
+      StringBuilder queryBuilder;
 
       if (checkComboBox.getCheckModel().getCheckedIndices().isEmpty()) {
-        query = "FROM MovieDetails ";
+        queryBuilder = new StringBuilder("FROM MovieDetails ");
       } else {
-        query =
-            "SELECT DISTINCT movie FROM MovieDetails movie JOIN movie.genres genre WHERE genre.name IN (";
+        queryBuilder =
+            new StringBuilder("SELECT DISTINCT movie FROM MovieDetails movie JOIN movie.genres genre WHERE genre.name IN (");
 
         for (String genre : checkComboBox.getCheckModel().getCheckedItems()) {
-          query = query + "'" + genre + "', ";
+          queryBuilder.append("'");
+          queryBuilder.append(genre);
+          queryBuilder.append("', ");
         }
 
-        query = query.substring(0, query.length() - 2) + " )";
+        queryBuilder.delete(queryBuilder.length() - 2, queryBuilder.length());
+        queryBuilder.append(")");
       }
 
-      Logger.debug(query);
+      Logger.debug(queryBuilder);
+      Logger.info(queryBuilder.toString());
 
       session = HibernateConnMan.getSession(session);
-      movieDetailsList = session.createQuery(query).getResultList();
+      movieDetailsList = session.createQuery(queryBuilder.toString()).getResultList();
       session.getTransaction().commit();
 
       loadTable();
-
-      // ! Load suggestion
-      //            TextFields.bindAutoCompletion(searchField,
-      // movieDetailsList.stream().map(MovieDetails::getFileName).collect(Collectors.toList()));
     };
   }
 

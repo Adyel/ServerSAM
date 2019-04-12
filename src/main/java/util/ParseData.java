@@ -213,30 +213,6 @@ public class ParseData {
     return imdbId.matches("tt\\d{7}");
   }
 
-  @Deprecated
-  public void setFileName(String _fullTitle) {
-
-    if (_fullTitle.contains("(") && _fullTitle.contains(")")) {
-      String[] splitted = _fullTitle.split("[\\(\\)]");
-      name = splitted[0].trim();
-
-      try {
-        year = Integer.parseInt(splitted[1].trim());
-      } catch (NumberFormatException e) {
-        year = Integer.parseInt(splitted[3]);
-      }
-
-      String quality;
-      try {
-        quality = splitted[2].trim().split(" ")[0].replaceAll("[\\[\\]]", "");
-
-      } catch (ArrayIndexOutOfBoundsException e) {
-        quality = "";
-      }
-      validData = true;
-    }
-  }
-
   /**
    * Tries to get movie name and year from filename<br>
    * 1. splits string using common delimiters ".- ()"<br>
@@ -280,7 +256,8 @@ public class ParseData {
       opt.addAll(Arrays.asList(o));
       fname = fname.replace(m.group(), ""); // remove complete group from name
     }
-    LOGGER.trace("ARR: " + opt);
+    LOGGER.trace(String.format("ARR: %s", opt));
+
 
     // detect OTR recordings - at least with that special pattern
     p =
