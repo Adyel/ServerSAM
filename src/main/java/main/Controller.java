@@ -74,6 +74,7 @@ public class Controller implements Initializable {
   @FXML private TableColumn<TableViewModel, Double> rating;
   @FXML private TableColumn<TableViewModel, String> director;
   @FXML private TableColumn<TableViewModel, Boolean> subtitle;
+
   private ObservableList<TableViewModel> tableViewModelObservableList =
       FXCollections.observableArrayList();
   private FilteredList<TableViewModel> tableViewModelFilteredList;

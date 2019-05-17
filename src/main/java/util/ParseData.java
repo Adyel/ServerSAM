@@ -20,7 +20,11 @@ public class ParseData {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ParseData.class);
   private static final String DELIMITER = "[\\[\\](){} _,.-]";
-  private static final String[] stopwords = {
+  // clean before splitting (needs delimiter in front!)
+  private static final String[] cleanWords = {"24\\.000", "23\\.976", "23\\.98", "24\\.00"};
+  private static Set<String> hashSet = new HashSet<>();
+  private static Session session;
+  private static final String[] stopWords = {
     "1080",
     "1080i",
     "1080p",
@@ -161,8 +165,6 @@ public class ParseData {
     "hq",
     "tcrip"
   };
-  private static Set<String> hashSet = new HashSet<>();
-  private static Session session;
 
   static {
     session = HibernateConnMan.getSession();
@@ -179,12 +181,8 @@ public class ParseData {
 
   // ! Better implementation
 
-  private String name;
-  private int year;
-  private boolean validData = false;
   private List<MovieDetails> movieDetailsList = new ArrayList<>();
-  // clean before splitting (needs delimiter in front!)
-  private String[] cleanwords = {"24\\.000", "23\\.976", "23\\.98", "24\\.00"};
+
 
   public ParseData() {
 
@@ -216,14 +214,14 @@ public class ParseData {
   /**
    * Tries to get movie name and year from filename<br>
    * 1. splits string using common delimiters ".- ()"<br>
-   * 2. searches for first occurrence of common stopwords<br>
+   * 2. searches for first occurrence of common stopWords<br>
    * 3. if last token is 4 digits, assume year and set [1]<br>
    * 4. everything before the first stopword must be the movie name :p
    *
    * @param filename the filename to get the title from
    * @return title/year string (year can be empty)
    */
-  private String[] detectCleanMovieNameAndYear(String filename) {
+  private String[] cleanMovieNameAndYear(String filename) {
     String[] ret = {"", ""};
     // use trace to not remove logging completely (function called way to often on multi movie dir
     // parsing)
@@ -239,7 +237,7 @@ public class ParseData {
     // replaces any resolution 1234x1234 (must start and end with a non-word (else too global)
     fname = fname.replaceFirst("(?i)\\W\\d{3,4}x\\d{3,4}", " ");
     // replace FPS specific words (must start with a non-word (else too global)
-    for (String cw : cleanwords) {
+    for (String cw : cleanWords) {
       fname = fname.replaceFirst("(?i)\\W" + cw, " ");
     }
 
@@ -280,7 +278,7 @@ public class ParseData {
     // iterate over all splitted items
     for (int i = 0; i < s.length; i++) {
       // search for stopword position
-      for (String stop : stopwords) {
+      for (String stop : stopWords) {
         if (s[i].equalsIgnoreCase(stop)) {
           s[i] = ""; // delete stopword
           // remember lowest position, but not lower than 2!!!
@@ -365,15 +363,6 @@ public class ParseData {
     return ret;
   }
 
-  @Deprecated
-  public void insertToList() {
-
-    if (validData) {
-      if (hashSet.add(name + year)) {
-        movieDetailsList.add(new MovieDetails(name, year));
-      }
-    }
-  }
 
   /**
    * This function will get the filename and Clean the String. It will separate "Title" & "Release
@@ -383,12 +372,15 @@ public class ParseData {
    * @param fileName the filename to get the title and year from.
    */
   public void add(String fileName) {
-    String[] movie = detectCleanMovieNameAndYear(fileName);
+    String[] movie = cleanMovieNameAndYear(fileName);
 
-    org.pmw.tinylog.Logger.info(movie[0] + " " + movie[1]);
+    String movieName = movie[0];
+    String year = movie[1];
 
-    if (hashSet.add(movie[0] + movie[1]) && StringUtils.isNotBlank(movie[1])) {
-      movieDetailsList.add(new MovieDetails(movie[0], Integer.parseInt(movie[1])));
+    org.pmw.tinylog.Logger.info(movieName + " " + year);
+
+    if (StringUtils.isNotBlank(year) && hashSet.add(movieName + year)) {
+      movieDetailsList.add(new MovieDetails(movieName, Integer.parseInt(year)));
     }
   }
 
