@@ -19,6 +19,9 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven {
+		url "http://maven.bestsolution.at/efxclipse-releases"
+	}
 }
 
 javafx {
@@ -39,5 +42,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	// 3rd party dependencies
-	implementation 'com.dlsc.workbenchfx:workbenchfx-core:11.0.0'
+	implementation 'com.dlsc.workbenchfx:workbenchfx-core:11.0.0'		// https://github.com/dlemmermann/WorkbenchFX
+	implementation 'com.dlsc.preferencesfx:preferencesfx-core:11.1.0'	// https://github.com/dlemmermann/PreferencesFX
+	implementation 'org.controlsfx:controlsfx:11.0.0'					//
+	implementation 'com.uwetrottmann.tmdb2:tmdb-java:2.0.3'				// https://github.com/UweTrottmann/tmdb-java
+
 }

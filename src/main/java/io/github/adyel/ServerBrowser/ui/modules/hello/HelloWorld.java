@@ -6,11 +6,11 @@ import javafx.scene.Node;
 
 public class HelloWorld extends WorkbenchModule {
 
-    public HelloWorld() {
-        super("Hello World", MaterialDesignIcon.HUMAN_GREETING);
-    }
+  public HelloWorld() {
+    super("Hello World", MaterialDesignIcon.HUMAN_GREETING);
+  }
 
-    @Override
+  @Override
   public Node activate() {
     return new HelloWorldView();
   }
