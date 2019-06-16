@@ -1,9 +1,9 @@
-package io.github.adyel.ServerBrowser;
+package io.github.adyel.serverbrowser;
 
 import com.dlsc.workbenchfx.Workbench;
-import io.github.adyel.ServerBrowser.ui.modules.hello.HelloWorld;
-import io.github.adyel.ServerBrowser.ui.modules.preference.PreferenceModule;
-import io.github.adyel.ServerBrowser.ui.modules.table.TableModule;
+import io.github.adyel.serverbrowser.ui.modules.hello.HelloWorld;
+import io.github.adyel.serverbrowser.ui.modules.preference.PreferenceModule;
+import io.github.adyel.serverbrowser.ui.modules.table.TableModule;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.context.ApplicationListener;
@@ -16,8 +16,17 @@ public class StageListener implements ApplicationListener<StageReady> {
   public void onApplicationEvent(StageReady event) {
     Stage stage = event.getStage();
 
-    stage.setTitle("ServerBrowser");
-    stage.setScene(new Scene(initWorkbench()));
+//    String darkTheme = serverbrowser.class.getResource("darkTheme.css").toExternalForm();
+//    System.out.println(darkTheme);
+
+    stage.setTitle("serverbrowser");
+
+    Workbench workbench = initWorkbench();
+//    workbench.getStylesheets().add(darkTheme);
+
+    stage.setScene(new Scene(workbench));
+    stage.setWidth(600);
+    stage.setHeight(800);
     stage.centerOnScreen();
     stage.show();
   }

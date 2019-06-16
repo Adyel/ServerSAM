@@ -1,4 +1,4 @@
-package io.github.adyel.ServerBrowser;
+package io.github.adyel.serverbrowser;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,10 +1,13 @@
-package io.github.adyel.ServerBrowser.ui.modules.preference;
+package io.github.adyel.serverbrowser.ui.modules.preference;
 
 import com.dlsc.preferencesfx.PreferencesFx;
 import com.dlsc.preferencesfx.model.Category;
 import com.dlsc.preferencesfx.model.Group;
 import com.dlsc.preferencesfx.model.Setting;
 import com.dlsc.preferencesfx.view.PreferencesFxView;
+import com.uwetrottmann.tmdb2.entities.BaseMovie;
+import io.github.adyel.serverbrowser.jpa.model.Movie;
+import java.util.function.Function;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -43,4 +46,8 @@ class PreferenceModuleView {
   public boolean isDarkMode() {
     return darkMode.get();
   }
+
+  Function<BaseMovie, Movie> toMovieModel =
+      baseMovie ->
+          Movie.builder().title(baseMovie.title).releaseDate(baseMovie.release_date).build();
 }

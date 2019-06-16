@@ -3,4 +3,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'ServerBrowser'
+rootProject.name = 'serverbrowser'

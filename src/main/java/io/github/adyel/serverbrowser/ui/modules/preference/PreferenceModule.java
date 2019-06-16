@@ -1,4 +1,4 @@
-package io.github.adyel.ServerBrowser.ui.modules.preference;
+package io.github.adyel.serverbrowser.ui.modules.preference;
 
 import com.dlsc.workbenchfx.model.WorkbenchModule;
 import com.dlsc.workbenchfx.view.controls.ToolbarItem;

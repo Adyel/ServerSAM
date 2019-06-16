@@ -1,4 +1,4 @@
-package io.github.adyel.ServerBrowser;
+package io.github.adyel.serverbrowser;
 
 import javafx.application.Application;
 import javafx.application.HostServices;
@@ -16,7 +16,7 @@ public class ServerBrowser extends Application {
 
     /**
      * Initialize Spring boot before JavaFx application starts.
-     * @throws Exception
+     * @throws Exception Could throw exception.
      */
 
     @Override
