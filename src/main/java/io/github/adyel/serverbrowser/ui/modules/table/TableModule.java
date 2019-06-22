@@ -1,4 +1,4 @@
-package io.github.adyel.ServerBrowser.ui.modules.table;
+package io.github.adyel.serverbrowser.ui.modules.table;
 
 import com.dlsc.workbenchfx.model.WorkbenchModule;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;

@@ -90,6 +90,7 @@ cmake-build-*/
 
 # IntelliJ
 out/
+.idea/sonarlint/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -138,3 +139,5 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+bin
+.idea

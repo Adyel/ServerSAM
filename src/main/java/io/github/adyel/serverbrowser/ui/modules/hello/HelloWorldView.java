@@ -1,4 +1,4 @@
-package io.github.adyel.ServerBrowser.ui.modules.hello;
+package io.github.adyel.serverbrowser.ui.modules.hello;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;

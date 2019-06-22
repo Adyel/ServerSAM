@@ -1,4 +1,4 @@
-package io.github.adyel.ServerBrowser.ui.viewmodel;
+package io.github.adyel.serverbrowser.ui.viewmodel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.Data;
 public class TableViewModel {
     private int tmdbId;
     private String title;
-    private int year;
+    private Integer year;
     private double rating;
     private boolean subtitleStatus;
     private String director;
