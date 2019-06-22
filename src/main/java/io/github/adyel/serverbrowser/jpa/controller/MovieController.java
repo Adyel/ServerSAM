@@ -4,14 +4,16 @@ import io.github.adyel.serverbrowser.jpa.model.Movie;
 import io.github.adyel.serverbrowser.jpa.service.MovieService;
 import java.util.Arrays;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-@Component
+@Controller
 public class MovieController {
 
-  @Autowired
-  MovieService movieService;
+  private final MovieService movieService;
+
+  public MovieController(MovieService movieService) {
+    this.movieService = movieService;
+  }
 
   public void sampleTest() {
     List<Movie> movies =
@@ -21,5 +23,8 @@ public class MovieController {
             new Movie("Mad Max", 2014));
 
     movieService.saveAll(movies);
+
+    List<Movie> movieList  = movieService.getAll();
+    movieList.forEach(System.out::println);
   }
 }
