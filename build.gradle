@@ -49,7 +49,7 @@ dependencies {
     implementation 'com.uwetrottmann.tmdb2:tmdb-java:2.0.0'
 
     // https://github.com/controlsfx/controlsfx
-    implementation 'org.controlsfx:controlsfx:8.40.15-SNAPSHOT'
+    implementation 'org.controlsfx:controlsfx:12.0.0-SNAPSHOT'
 
     // https://github.com/aalmiray/ikonli
     implementation 'org.kordamp.ikonli:ikonli-javafx:2.4.0'
