@@ -10,7 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "genre")
 public class Genre {
@@ -41,31 +43,5 @@ public class Genre {
   public Genre(com.uwetrottmann.tmdb2.entities.Genre genre) {
     this.genreID = genre.id;
     this.name = genre.name;
-  }
-
-  // INFO: Getters & Setters
-
-  public int getGenreID() {
-    return genreID;
-  }
-
-  public void setGenreID(int genreID) {
-    this.genreID = genreID;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public List<MovieDetails> getMovies() {
-    return movies;
-  }
-
-  public void setMovies(List<MovieDetails> movies) {
-    this.movies = movies;
   }
 }

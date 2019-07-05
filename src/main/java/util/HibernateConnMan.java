@@ -36,7 +36,6 @@ public class HibernateConnMan {
     if (!session.getTransaction().isActive()) {
       session.beginTransaction();
     }
-
     return session;
   }
 

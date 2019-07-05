@@ -91,7 +91,7 @@ public class TMDBservice {
               .map(Genre::new)
               .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     } catch (IOException e) {
-      e.printStackTrace();
+      Logger.info("IOException ", e);
     }
 
     for (Genre genre : genreList) {

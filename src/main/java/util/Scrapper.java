@@ -44,11 +44,12 @@ public class Scrapper {
       }
     }
 
+
     Elements names = doc.getElementsByTag("a");
 
-    ParseData parseData = new ParseData();
-
     if (names != null) {
+
+      ParseData parseData = new ParseData();
 
       for (Element name : names) {
         parseData.add(name.text());
