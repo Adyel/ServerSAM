@@ -46,7 +46,7 @@ dependencies {
     compile group: 'org.apache.commons', name: 'commons-text', version: '1.6'
 
     // https://github.com/UweTrottmann/tmdb-java
-    implementation 'com.uwetrottmann.tmdb2:tmdb-java:2.0.0'
+    implementation 'com.uwetrottmann.tmdb2:tmdb-java:2.0.3'
 
     // https://github.com/controlsfx/controlsfx
     implementation 'org.controlsfx:controlsfx:8.40.15-SNAPSHOT'
@@ -56,7 +56,7 @@ dependencies {
     implementation 'org.kordamp.ikonli:ikonli-typicons-pack:2.4.0'
 
     // https://github.com/UweTrottmann/tmdb-java
-    implementation 'com.uwetrottmann.tmdb2:tmdb-java:2.0.0'
+    implementation 'com.uwetrottmann.tmdb2:tmdb-java:2.0.3'
 
     // https://github.com/wtekiela/opensub4j
     compile 'com.github.wtekiela:opensub4j:0.2.0'
