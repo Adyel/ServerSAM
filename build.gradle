@@ -31,7 +31,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
 
     // http://www.tinylog.org/
-    compile 'org.tinylog:tinylog:1.3.4'
+    compile 'org.tinylog:tinylog:1.3.6'
 
     // http://hibernate.org/orm/documentation/getting-started/
     compile 'org.hibernate:hibernate-core:5.4.1.Final'
