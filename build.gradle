@@ -53,7 +53,7 @@ dependencies {
 
     // https://github.com/aalmiray/ikonli
     implementation 'org.kordamp.ikonli:ikonli-javafx:2.4.0'
-    implementation 'org.kordamp.ikonli:ikonli-typicons-pack:2.4.0'
+    implementation 'org.kordamp.ikonli:ikonli-typicons-pack:11.3.4'
 
     // https://github.com/UweTrottmann/tmdb-java
     implementation 'com.uwetrottmann.tmdb2:tmdb-java:2.0.0'
