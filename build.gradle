@@ -62,7 +62,7 @@ dependencies {
     compile 'com.github.wtekiela:opensub4j:0.2.0'
 
     // https://github.com/dlemmermann/PreferencesFX
-    compile 'com.dlsc.preferencesfx:preferencesfx-core:2.1.0'
+    compile 'com.dlsc.preferencesfx:preferencesfx-core:11.3.2'
 
     // https://projectlombok.org/setup/gradle
     compileOnly 'org.projectlombok:lombok:1.18.6'
