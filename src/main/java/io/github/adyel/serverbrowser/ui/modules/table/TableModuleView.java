@@ -1,6 +1,8 @@
 package io.github.adyel.serverbrowser.ui.modules.table;
 
+import io.github.adyel.serverbrowser.jpa.controller.MovieController;
 import io.github.adyel.serverbrowser.ui.viewmodel.TableViewModel;
+import io.github.adyel.serverbrowser.util.ApplicationContextUtils;
 import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +21,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.Rating;
+import org.springframework.context.ApplicationContext;
 
 class TableModuleView extends BorderPane {
 
@@ -106,12 +109,15 @@ class TableModuleView extends BorderPane {
     columnDirector.setCellValueFactory(new PropertyValueFactory<>("director"));
 
 
+    ApplicationContext applicationContext = ApplicationContextUtils.getApplicationContext();
+    MovieController movieController = applicationContext.getBean(MovieController.class);
+
 //    Todo: Remove after testing
-    ObservableList<TableViewModel> list =
-        FXCollections.observableArrayList(
-            new TableViewModel("Up", 2019),
-            new TableViewModel("Fighting Club", 2011),
-            new TableViewModel("Avengers", 2017));
+    ObservableList<TableViewModel> list = movieController.getAllMovieInTableViewModel();
+//        FXCollections.observableArrayList(
+//            new TableViewModel("Up", 2019),
+//            new TableViewModel("Fighting Club", 2011),
+//            new TableViewModel("Avengers", 2017));
 
     tableView.setItems(list);
     tableView.getColumns().addAll(columnTitle, columnYear, columnRating, columnDirector);

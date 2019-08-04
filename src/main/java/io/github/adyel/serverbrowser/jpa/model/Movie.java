@@ -1,10 +1,12 @@
 package io.github.adyel.serverbrowser.jpa.model;
 
+import io.github.adyel.serverbrowser.jpa.model.Movie.MovieId;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -13,27 +15,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Builder
 @Table(name = "movie_details")
+@IdClass(MovieId.class)
 public class Movie {
 
-  @Id
-  @Column(name = "movie_id")
-  @GeneratedValue
-  private Long movieId;
+//  @Id
+//  @Column(name = "movie_id")
+//  @GeneratedValue
+//  private Long movieId;
 
   @Column(name = "tmdb_id")
   private int tmdbId;
 
+  @Id
   @Column(name = "file_name")
   private String filename;
 
   @Column(name = "file_path")
   private String filepath;
 
+  @Id
   @Column(name = "year", columnDefinition = "SMALLINT")
   private short year;
 
@@ -71,5 +76,11 @@ public class Movie {
   public Movie(String filename, int year){
     this.filename = filename;
     this.year = (short) year;
+  }
+
+  @Data
+  static class MovieId implements Serializable{
+    private String filename;
+    private short year;
   }
 }
