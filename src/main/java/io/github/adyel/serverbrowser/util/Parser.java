@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +13,7 @@ import org.apache.commons.lang.WordUtils;
 import org.springframework.util.StringUtils;
 
 @Slf4j
-public class Parser implements Callable<Movie> {
+public class Parser {
 
   private static final String DELIMITER = "[\\[\\](){} _,.-]";
   private static final String[] STOP_WORDS = {
@@ -156,7 +155,9 @@ public class Parser implements Callable<Movie> {
     "xxx",
     "hc",
     "hq",
-    "tcrip"
+    "tcrip",
+    "eng",
+    "subs"
   };
   private static final String[] CLEAN_WORDS = {"24\\.000", "23\\.976", "23\\.98", "24\\.00"};
 
@@ -164,7 +165,7 @@ public class Parser implements Callable<Movie> {
 
   private Parser(String filename) {
     this.filename = filename;
-  };
+  }
 
   public static Parser of(String filename) {
     return new Parser(filename);
@@ -338,10 +339,5 @@ public class Parser implements Callable<Movie> {
     }
 
     return imdbId.matches("tt\\d{7}");
-  }
-
-  @Override
-  public Movie call() throws Exception {
-    return null;
   }
 }

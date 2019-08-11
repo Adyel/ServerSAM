@@ -1,18 +1,8 @@
 package io.github.adyel.serverbrowser.web.scraper;
 
-import com.google.common.base.Charsets;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
-import lombok.Cleanup;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -50,7 +40,6 @@ public class Scraper {
           .map(Element::text)
           .collect(Collectors.toList());
     }
-
     return null;
   }
 

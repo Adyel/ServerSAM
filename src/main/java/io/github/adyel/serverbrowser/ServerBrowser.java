@@ -60,11 +60,11 @@ class StageReady extends ApplicationEvent {
      *
      * @param source the object on which the event initially occurred (never {@code null})
      */
-    public StageReady(Stage source) {
+    StageReady(Stage source) {
         super(source);
     }
 
-    public Stage getStage(){
+    Stage getStage(){
         return (Stage) getSource();
     }
 }
