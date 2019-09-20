@@ -10,8 +10,9 @@ import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.WordUtils;
 import org.springframework.util.StringUtils;
+
+// import org.apache.commons.lang.WordUtils;
 
 @Slf4j
 public class Parser implements Callable<Movie> {
@@ -307,7 +308,9 @@ public class Parser implements Callable<Movie> {
             break;
 
           default:
-            stringBuilder.append(WordUtils.capitalizeFully(word)).append(" "); // make CamelCase
+            stringBuilder
+                .append(StringUtils.capitalize(word.toLowerCase()))
+                .append(" "); // make TitleCase
             break;
         }
       }

@@ -3,7 +3,6 @@ package io.github.adyel.serverbrowser.web.scraper;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import lombok.Cleanup;
 
 public class Scraper {
 

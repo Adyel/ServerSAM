@@ -5,7 +5,6 @@ import io.github.adyel.serverbrowser.jpa.service.MovieService;
 import io.github.adyel.serverbrowser.ui.viewmodel.TableViewModel;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -1,25 +1,13 @@
 package io.github.adyel.serverbrowser.util;
 
-import io.github.adyel.serverbrowser.jpa.controller.MovieController;
-import io.github.adyel.serverbrowser.jpa.model.Movie;
 import io.github.adyel.serverbrowser.jpa.service.MovieService;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
-import org.junit.Assert;
 import org.junit.Test;
-import org.reactivestreams.Publisher;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.ApplicationContext;
 import reactor.core.publisher.Flux;
-import reactor.core.scheduler.Scheduler;
-import reactor.core.scheduler.Schedulers;
 
 @SpringBootTest
 public class ParserTester {
