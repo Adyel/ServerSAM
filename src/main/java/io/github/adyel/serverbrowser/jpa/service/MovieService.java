@@ -25,4 +25,8 @@ public class MovieService {
   public void saveAll(List<Movie> movieList){
     movieRepository.saveAll(movieList);
   }
+
+  public void deleteAll(){
+    movieRepository.deleteAll();
+  }
 }

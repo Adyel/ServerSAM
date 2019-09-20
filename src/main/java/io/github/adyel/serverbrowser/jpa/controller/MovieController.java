@@ -19,19 +19,19 @@ public class MovieController {
     this.movieService = movieService;
   }
 
-  public void sampleData() {
-    List<Movie> movies =
-        Arrays.asList(
-            new Movie("Up", 2009),
-            new Movie("Alice in the wonderland", 2012),
-            new Movie("Mad Max", 2014),
-            new Movie("3 Idiots!!!", 2008));
-
-    movieService.saveAll(movies);
-
-    List<Movie> movieList = movieService.getAll();
-    movieList.forEach(System.out::println);
-  }
+//  public void sampleData() {
+//    List<Movie> movies =
+//        Arrays.asList(
+//            new Movie("Up", 2009),
+//            new Movie("Alice in the wonderland", 2012),
+//            new Movie("Mad Max", 2014),
+//            new Movie("3 Idiots!!!", 2008));
+//
+//    movieService.saveAll(movies);
+//
+//    List<Movie> movieList = movieService.getAll();
+//    movieList.forEach(System.out::println);
+//  }
 
 
   public void printAll(){
@@ -50,5 +50,9 @@ public class MovieController {
 
   private static TableViewModel movieToTableView(Movie movie) {
     return new TableViewModel(movie.getFilename(), movie.getYear());
+  }
+
+  public void deleteAll() {
+    movieService.deleteAll();
   }
 }
