@@ -54,7 +54,7 @@ dependencies {
 	implementation 'com.dlsc.preferencesfx:preferencesfx-core:11.6.0'	// https://github.com/dlemmermann/PreferencesFX
 	implementation 'com.dlsc.workbenchfx:workbenchfx-core:11.0.1'		// https://github.com/dlemmermann/WorkbenchFX
 	implementation 'org.controlsfx:controlsfx:11.0.0'					//
-	implementation 'com.uwetrottmann.tmdb2:tmdb-java:2.0.3'				// https://github.com/UweTrottmann/tmdb-java
+	implementation 'com.uwetrottmann.tmdb2:tmdb-java:2.1.1'				// https://github.com/UweTrottmann/tmdb-java
 	implementation 'org.jsoup:jsoup:1.12.1'								// jsoup HTML parser library @ https://jsoup.org/
 
 }
