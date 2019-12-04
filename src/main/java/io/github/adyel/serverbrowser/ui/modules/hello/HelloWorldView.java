@@ -30,7 +30,7 @@ class HelloWorldView extends BorderPane {
     setCenter(label);
 
     Button btnClick = new Button("Update");
-    Button btnFlick = new Button("Flick");
+    Button btnFlick = new Button("Clear !!");
     Region spacer = new Region();
 
     HBox hBox = new HBox(btnClick, spacer, btnFlick);
@@ -45,27 +45,20 @@ class HelloWorldView extends BorderPane {
 
     btnClick.setOnAction(
         event -> {
-          label.setText("Clicked !!");
+          label.setText("Update !!");
           updateMovieList();
         });
 
     btnFlick.setOnAction(
         event -> {
-          label.setText("Flicked !!");
+          label.setText("Clear List !!");
           movieController.deleteAll();
         });
   }
 
   private void updateMovieList() {
-    List<String> urlList = new ArrayList<>();
-
-    StringBuilder currentURL =
-        new StringBuilder("http://ftp2.circleftp.net/FILE--SERVER/English%20Movies/XXXX");
-
-    for (int i = 1996; i < 2020; i++) {
-      currentURL.replace(currentURL.length() - 4, currentURL.length(), i + "");
-      urlList.add(currentURL.toString());
-    }
+    List<String> urlList =
+        createUrlRange("http://ftp2.circleftp.net/FILE--SERVER/English%20Movies/YYYY", 1996, 2019);
 
     Notifications.create()
         .title("Starting Update")
@@ -83,6 +76,23 @@ class HelloWorldView extends BorderPane {
         .flatMapIterable(Scraper::scrap)
         .map(Parser::of)
         .map(Parser::parse)
-        .subscribe(movieController::save, Throwable::printStackTrace, () -> Platform.runLater(notifyUpdateComplete::showInformation));
+        .subscribe(
+            movieController::save,
+            Throwable::printStackTrace,
+            () -> Platform.runLater(notifyUpdateComplete::showInformation));
+  }
+
+
+  private List<String> createUrlRange(String baseURL, int startYear, int endYear) {
+
+    List<String> urlList = new ArrayList<>();
+    StringBuilder currentURL = new StringBuilder(baseURL);
+
+    for (int i = startYear; i <= endYear; i++) {
+      // Remove "YYYY" from the end of the string and replace it with actual Year
+      currentURL.replace(currentURL.length() - 4, currentURL.length(), i + "");
+      urlList.add(currentURL.toString());
+    }
+    return urlList;
   }
 }
