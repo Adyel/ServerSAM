@@ -2,7 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.2.6.RELEASE'
 	id 'java'
 	id 'application'
-	id 'org.openjfx.javafxplugin' version '0.0.8'
+	id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
 apply plugin: 'io.spring.dependency-management'
