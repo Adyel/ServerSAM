@@ -58,7 +58,8 @@ class HelloWorldView extends BorderPane {
 
   private void updateMovieList() {
     List<String> urlList =
-        createUrlRange("http://ftp2.circleftp.net/FILE--SERVER/English%20Movies/YYYY", 1996, 2019);
+
+        createUrlRange("http://index.circleftp.net/ftp2/English%20Movies/YYYY", 1996, 2019);
 
     Notifications.create()
         .title("Starting Update")

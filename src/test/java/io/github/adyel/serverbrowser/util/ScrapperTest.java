@@ -6,7 +6,6 @@ import io.github.adyel.serverbrowser.web.scraper.Scraper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.core.publisher.Flux;
@@ -17,7 +16,7 @@ public class ScrapperTest {
 
   @Test
   public void scrapWithParse() {
-    Scraper.of("http://ftp2.circleftp.net/FILE--SERVER/English%20Movies/2000/").scrap().stream()
+    Scraper.of("http://ftp2.circleftp.net/FILE--SERVER/ftp2/English%20Movies/").scrap().stream()
         .map(Parser::of)
         .map(Parser::parse)
         .map(Movie::getFilename)
